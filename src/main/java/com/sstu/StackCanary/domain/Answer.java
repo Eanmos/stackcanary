@@ -1,5 +1,9 @@
 package com.sstu.StackCanary.domain;
 
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -51,6 +55,11 @@ public class Answer {
     @Transient
     public Integer rating;
 
+    // This field must be initialized and updated manual by
+    // calling the convertBodyToHTML() method.
+    @Transient
+    public String bodyInHTML;
+
     protected Answer() { }
 
     public void formatCreatingDateTime() {
@@ -60,5 +69,12 @@ public class Answer {
 
     public void calculateRating() {
         this.rating = ratedUpByUser.size() - ratedDownByUser.size();
+    }
+
+    public void convertBodyToHTML() {
+        Parser parser = Parser.builder().build();
+        Node document = parser.parse(body);
+        HtmlRenderer renderer = HtmlRenderer.builder().escapeHtml(true).build();
+        bodyInHTML = renderer.render(document);
     }
 }

@@ -1,5 +1,9 @@
 package com.sstu.StackCanary.domain;
 
+import org.commonmark.node.Node;
+import org.commonmark.parser.Parser;
+import org.commonmark.renderer.html.HtmlRenderer;
+
 import javax.persistence.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -70,7 +74,13 @@ public class Question {
     @Transient
     public Integer answersCount;
 
-    protected Question() { }
+    // This field must be initialized and updated manual by
+    // calling the convertBodyToHTML() method.
+    @Transient
+    public String bodyInHTML;
+
+    protected Question() {
+    }
 
     public void formatCreatingDateTime() {
         DateFormat d = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
@@ -83,5 +93,12 @@ public class Question {
 
     public void calculateAnswersCount() {
         answersCount = this.answers.size();
+    }
+
+    public void convertBodyToHTML() {
+        Parser parser = Parser.builder().build();
+        Node document = parser.parse(body);
+        HtmlRenderer renderer = HtmlRenderer.builder().escapeHtml(true).build();
+        bodyInHTML = renderer.render(document);
     }
 }

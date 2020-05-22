@@ -25,10 +25,12 @@ public class QuestionPageController {
         q.formatCreatingDateTime();
         q.calculateRating();
         q.calculateAnswersCount();
+        q.convertBodyToHTML();
 
         for (Answer a : q.answers) {
             a.formatCreatingDateTime();
             a.calculateRating();
+            a.convertBodyToHTML();
         }
 
         model.put("question", q);

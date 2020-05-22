@@ -1,29 +1,49 @@
 function renderQuestionAndAnswersBody()
 {
-	convertQuestionMarkdownToHTML();
-	convertAllAnswersMarkdownToHTML();
-
+    parseQuestionBodyHTML();
+    parseAnswersBodyHTML();
 	highlightQuestionCode();
 	highlightAllAnswersCode();
 }
 
-function convertQuestionMarkdownToHTML()
+function parseQuestionBodyHTML()
 {
-	  let  elem       = document.getElementById("questionBody");
-	const  md         = elem.textContent;
-	const  html       = markdown.toHTML(md);
-	elem.innerHTML    = html;
+	let elem = document.getElementById("questionBody");
+	let elemInner = elem.innerHTML;
+	console.log(elemInner);
+
+	let convertedInner = elemInner;
+	convertedInner = replaceAll(convertedInner, '&amp;', '&');
+	convertedInner = replaceAll(convertedInner, '&lt;', '<');
+	convertedInner = replaceAll(convertedInner, '&gt;', '>');
+	convertedInner = replaceAll(convertedInner, '&amp;', '&');
+	console.log(convertedInner);
+
+    elem.innerHTML = convertedInner;
 }
 
-function convertAllAnswersMarkdownToHTML()
+function parseAnswersBodyHTML()
 {
 	let elems = document.getElementsByClassName("answerBody");
-	
+
 	for (let i = 0; i < elems.length; ++i) {
-		const md             = elems[i].textContent;
-		const html           = markdown.toHTML(md);
-		elems[i].innerHTML   = html;
-	}
+	    let elem = elems[i];
+        let elemInner = elem.innerHTML;
+        console.log(elemInner);
+
+        let convertedInner = elemInner;
+        convertedInner = replaceAll(convertedInner, '&amp;', '&');
+        convertedInner = replaceAll(convertedInner, '&lt;', '<');
+        convertedInner = replaceAll(convertedInner, '&gt;', '>');
+        convertedInner = replaceAll(convertedInner, '&amp;', '&');
+        console.log(convertedInner);
+
+        elem.innerHTML = convertedInner;
+    }
+}
+
+function replaceAll(string, search, replace) {
+  return string.split(search).join(replace);
 }
 
 function highlightQuestionCode()
