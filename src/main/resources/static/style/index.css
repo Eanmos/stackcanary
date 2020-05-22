@@ -1,0 +1,123 @@
+/*
+===============================================================================
+
+INDEX.HTML STYLESHEET
+
+===============================================================================
+*/
+
+body {
+	margin: 0 auto;
+	padding: 0;
+	width: 640px;
+}
+
+/*
+===============================================================================
+
+QUESTIONS LIST
+
+===============================================================================
+*/
+
+#questionsList {
+	padding: 20px 0;
+	width: 100%;
+}
+
+/*
+===============================================================================
+
+QUESTION BLOCK
+
+===============================================================================
+*/
+
+/*
+=======================================
+Main Question Block Style
+=======================================
+*/
+
+#questionsList > .question {
+	display: flex;
+	border-top: 1px solid #e3e3e3;
+	padding: 15px 0;
+	width: 100%;
+}
+
+#questionsList > .question:last-child {
+    border-bottom: 1px solid #e3e3e3;
+}
+
+#questionsList > .question > .left {
+	width: 40px;
+	text-align: center;
+	padding-right: 10px;
+}
+
+/*
+=======================================
+Question Title
+=======================================
+*/
+
+.questionTitle {
+	color: #23629F;
+	font: 17px "Lato";
+	text-decoration: none;
+}
+
+/*
+=======================================
+Question Rating
+=======================================
+*/
+
+.questionRating {
+	font: 17px "Lato";
+	margin-bottom: 3px;
+}
+
+.questionRatingLabel {
+	font: 12px "Lato";
+}
+
+/*
+=======================================
+Question Tags List
+=======================================
+*/
+
+.questionTagsList {
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 0;
+}
+
+.questionTagsListItem {
+	background: #f3f3f3;
+	font: 12px "Lato";
+	display: inline;
+	padding: 3px 6px;
+}
+
+.questionTag {
+	color: #23629F;
+	text-decoration: none;
+}
+
+.questionTag:hover {
+	background: #ededed;
+}
+
+/*
+=======================================
+Question Info
+=======================================
+*/
+
+.questionInfo {
+	margin-top: 3px;
+	font: 12px "Lato";
+}

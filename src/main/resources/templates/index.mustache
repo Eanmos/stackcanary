@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Stack Canary</title>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="style/index.css" />
+    </head>
+    <body>
+        <div id="questionsList">
+            {{#questions}}
+            <div class="question">
+                <div class="left">
+                    <div class="questionRating">{{rating}}</div>
+                    <span class="questionRatingLabel">votes</span>
+                </div>
+
+                <div class="main">
+                    <div><a class="questionTitle" href="/q?id={{id}}">{{title}}</a></div>
+
+                    <div class="questionInfo">
+                        <span>asked</span>
+                        <span class="questionDate">{{formattedCreatingDateTime}}</span>
+                        <span>by</span>
+                        <span class="questionAuthor">{{author.nickname}}</span>
+                    </div>
+
+                    <ul class="questionTagsList">
+                        {{#tags}}
+                        <li class="questionTagsListItem"><a class="questionTag" href="#">{{name}}</a></li>
+                        {{/tags}}
+                    </ul>
+                </div>
+            </div>
+            {{/questions}}
+        </div>
+    </body>
+</html>

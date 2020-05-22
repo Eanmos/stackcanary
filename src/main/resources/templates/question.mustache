@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Stack Canary</title>
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
+        <link rel="stylesheet" href="style/question.css">
+        <link rel="stylesheet" href="style/googlecode.css">
+
+        <script defer src="lib/markdown.min.js"></script>
+        <script defer src="lib/highlight.js"></script>
+        <script defer src="scripts/questionAndAnswersBodyRendering.js"></script>
+    </head>
+    <body onload="renderQuestionAndAnswersBody();">
+        <div class="question">
+            <div class="left">
+                <div id="questionRatingUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                <div class="questionRating">{{question.rating}}</div>
+                <div id="questionRatingDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+            </div>
+
+            <div class="main">
+                <div class="questionTitleContainer">
+                    <a class="questionTitle" href="#">{{question.title}}</a>
+                </div>
+
+                <div id="questionBody">{{question.body}}</div>
+
+                <div class="questionInfo">
+                    <span>asked</span>
+                    <span class="questionDate">{{question.formattedCreatingDateTime}}</span>
+                    <span>by</span>
+                    <span class="questionAuthor">{{question.author.nickname}}</span>
+                </div>
+
+                <ul class="questionTagsList">
+                    {{#question.tags}}
+                    <li class="questionTagsListItem"><a class="questionTag" href="#">{{name}}</a></li>
+                    {{/question.tags}}
+                </ul>
+            </div>
+        </div>
+
+        <h2 id="answersCountHeader">
+            <span id="answersCount">{{question.answersCount}}</span>
+            <span>answers</span>
+        </h2>
+
+        <div id="answersList">
+            {{#question.answers}}
+            <div class="answer">
+                <div class="left">
+                    <div id="answerRatingUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                    <div class="answerRating">{{rating}}</div>
+                    <div id="answerRatingDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+                </div>
+
+                <div class="main">
+                    <div class="answerBody">{{body}}</div>
+
+                    <div class="answerInfo">
+                        <span>answered</span>
+                        <span class="answerDate">{{formattedCreatingDateTime}}</span>
+                        <span>by</span>
+                        <span class="answerAuthor">{{author.nickname}}</span>
+                    </div>
+                </div>
+            </div>
+            {{/question.answers}}
+        </div>
+    </body>
