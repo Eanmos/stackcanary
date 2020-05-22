@@ -15,7 +15,7 @@ VALUES
 ("clang"),
 ("language-lawyer");
 
-INSERT INTO question(title, body, author, creating_date_time)
+INSERT INTO question(title, body, author, creation_date_time)
 VALUES
 ("c++ c-style zero-initialization { 0 }",
 "https://en.cppreference.com/w/cpp/language/zero_initialization shows that zero-initialization happens in the following scenario:
@@ -70,7 +70,7 @@ The results are the following:
 What is the correct behavior in this case?",
 1, "2020-01-16 21:21:39");
 
-INSERT INTO answer(body, author, creating_date_time)
+INSERT INTO answer(body, author, creation_date_time)
 VALUES
 ("ISO/IEC N489 [§9.4.1](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4849.pdf#subsection.9.4.1) states
 

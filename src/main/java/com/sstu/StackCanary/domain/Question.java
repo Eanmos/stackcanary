@@ -26,9 +26,9 @@ public class Question {
 
     private String body;
 
-    @Column(name = "creatingDateTime", columnDefinition = "DATETIME")
+    @Column(name = "creationDateTime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creatingDateTime;
+    private Date creationDateTime;
 
     //==========================================
     //
@@ -81,7 +81,7 @@ public class Question {
     //==========================================
 
     @Transient
-    public String formattedCreatingDateTime;
+    public String formattedCreationDateTime;
 
     @Transient
     public Integer votes;
@@ -106,9 +106,9 @@ public class Question {
     //
     //==========================================
 
-    public void formatCreatingDateTime() {
+    public void formatCreationDateTime() {
         DateFormat d = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
-        formattedCreatingDateTime = d.format(creatingDateTime);
+        formattedCreationDateTime = d.format(creationDateTime);
     }
 
     public void calculateVotes() {

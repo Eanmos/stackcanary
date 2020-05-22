@@ -19,7 +19,7 @@ public class IndexController {
 
         for (Question q : questions) {
             q.calculateVotes();
-            q.formatCreatingDateTime();
+            q.formatCreationDateTime();
         }
 
         model.put("questions", questions);

@@ -19,13 +19,13 @@ public class QuestionPageController {
     public String main(@RequestParam Integer id, Map<String, Object> model) {
         Question q = questionRepository.findById(id).get();
 
-        q.formatCreatingDateTime();
+        q.formatCreationDateTime();
         q.calculateVotes();
         q.calculateAnswersCount();
         q.convertBodyFromMarkdownToHTML();
 
         for (Answer a : q.answers) {
-            a.formatCreatingDateTime();
+            a.formatCreationDateTime();
             a.calculateVotes();
             a.convertBodyFromMarkdownToHTML();
         }
