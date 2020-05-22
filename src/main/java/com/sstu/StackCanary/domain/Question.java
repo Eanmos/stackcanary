@@ -62,7 +62,7 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedUpByUser;
+    public Set<User> votedUpByUsers;
 
     @ManyToMany
     @JoinTable(
@@ -70,7 +70,7 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedDownByUser;
+    public Set<User> votedDownByUsers;
 
     //==========================================
     //
@@ -112,7 +112,7 @@ public class Question {
     }
 
     public void calculateVotes() {
-        votes = votedUpByUser.size() - votedDownByUser.size();
+        votes = votedUpByUsers.size() - votedDownByUsers.size();
     }
 
     public void calculateAnswersCount() {

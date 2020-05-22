@@ -22,17 +22,17 @@ public class User {
     //
     //==========================================
 
-    @ManyToMany(mappedBy = "votedUpByUser")
-    private Set<Question> questionsVotedUpQuestions;
+    @ManyToMany(mappedBy = "votedUpByUsers")
+    private Set<Question> votedUpQuestions;
 
-    @ManyToMany(mappedBy = "votedDownByUser")
-    private Set<Question> questionsVotedDownQuestions;
+    @ManyToMany(mappedBy = "votedDownByUsers")
+    private Set<Question> votedDownQuestions;
 
-    @ManyToMany(mappedBy = "votedUpByUser")
-    private Set<Question> answersVotedUpQuestions;
+    @ManyToMany(mappedBy = "votedUpByUsers")
+    private Set<Answer> votedUpAnswers;
 
-    @ManyToMany(mappedBy = "votedDownByUser")
-    private Set<Question> answersVotedDownQuestions;
+    @ManyToMany(mappedBy = "votedDownByUsers")
+    private Set<Answer> votedDownAnswers;
 
     //==========================================
     //

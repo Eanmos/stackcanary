@@ -17,13 +17,18 @@ public class IndexController {
     public String main(Map<String, Object> model) {
         Iterable<Question> questions = questionRepository.findAll();
 
+        // Prepare transient fields
+        //
+        // — formattedCreationDateTime
+        // — votes
+        //
+        // that will be used in the template.
         for (Question q : questions) {
             q.calculateVotes();
             q.formatCreationDateTime();
         }
 
         model.put("questions", questions);
-
         return "index";
     }
 }

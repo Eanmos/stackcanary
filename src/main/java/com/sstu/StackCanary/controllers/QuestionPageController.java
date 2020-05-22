@@ -17,13 +17,25 @@ public class QuestionPageController {
 
     @GetMapping("/q")
     public String main(@RequestParam Integer id, Map<String, Object> model) {
+        // Assuming that the question with
+        // given ID always exists.
         Question q = questionRepository.findById(id).get();
 
-        q.formatCreationDateTime();
+        // Prepare transient fields
+        //
+        // — formattedCreationDateTime
+        // — votes
+        // — answersCount
+        // — bodyInHTML
+        //
+        // that will be used in the template.
         q.calculateVotes();
         q.calculateAnswersCount();
+        q.formatCreationDateTime();
         q.convertBodyFromMarkdownToHTML();
 
+        // Prepare transient fields of the each answer as well
+        // as we have done with the question.
         for (Answer a : q.answers) {
             a.formatCreationDateTime();
             a.calculateVotes();
@@ -31,7 +43,6 @@ public class QuestionPageController {
         }
 
         model.put("question", q);
-
         return "question";
     }
 }

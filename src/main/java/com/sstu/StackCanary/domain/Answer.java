@@ -46,7 +46,7 @@ public class Answer {
             joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedUpByUser;
+    public Set<User> votedUpByUsers;
 
     @ManyToMany
     @JoinTable(
@@ -54,7 +54,7 @@ public class Answer {
             joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedDownByUser;
+    public Set<User> votedDownByUsers;
 
     //==========================================
     //
@@ -89,11 +89,11 @@ public class Answer {
 
     public void formatCreationDateTime() {
         DateFormat d = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
-        this.formattedCreationDateTime = d.format(this.creationDateTime);
+        formattedCreationDateTime = d.format(creationDateTime);
     }
 
     public void calculateVotes() {
-        votes = votedUpByUser.size() - votedDownByUser.size();
+        votes = votedUpByUsers.size() - votedDownByUsers.size();
     }
 
     public void convertBodyFromMarkdownToHTML() {
