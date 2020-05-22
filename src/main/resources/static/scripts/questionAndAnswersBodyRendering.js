@@ -1,70 +1,53 @@
-function renderQuestionAndAnswersBody()
-{
-    parseQuestionBodyHTML();
-    parseAnswersBodyHTML();
-	highlightQuestionCode();
-	highlightAllAnswersCode();
+function renderQuestionAndAnswersBodies() {
+    convertQuestionBodyToHTML();
+    convertAnswersBodiesToHTML();
+    highlightCodeInQuestion();
+    highlightCodeInAnswers();
 }
 
-function parseQuestionBodyHTML()
-{
-	let elem = document.getElementById("questionBody");
-	let elemInner = elem.innerHTML;
-	console.log(elemInner);
-
-	let convertedInner = elemInner;
-	convertedInner = replaceAll(convertedInner, '&amp;', '&');
-	convertedInner = replaceAll(convertedInner, '&lt;', '<');
-	convertedInner = replaceAll(convertedInner, '&gt;', '>');
-	convertedInner = replaceAll(convertedInner, '&amp;', '&');
-	console.log(convertedInner);
-
-    elem.innerHTML = convertedInner;
+function convertQuestionBodyToHTML() {
+	let questionBody = document.getElementById("questionBody");
+    questionBody.innerHTML = replaceHTMLEntitiesWithRealCharacters(questionBody.innerHTML);
 }
 
-function parseAnswersBodyHTML()
-{
-	let elems = document.getElementsByClassName("answerBody");
+function convertAnswersBodiesToHTML() {
+	let answersBodies = document.getElementsByClassName("answerBody");
 
-	for (let i = 0; i < elems.length; ++i) {
-	    let elem = elems[i];
-        let elemInner = elem.innerHTML;
-        console.log(elemInner);
+	for (let a of answersBodies)
+        a.innerHTML = replaceHTMLEntitiesWithRealCharacters(a.innerHTML);
+}
 
-        let convertedInner = elemInner;
-        convertedInner = replaceAll(convertedInner, '&amp;', '&');
-        convertedInner = replaceAll(convertedInner, '&lt;', '<');
-        convertedInner = replaceAll(convertedInner, '&gt;', '>');
-        convertedInner = replaceAll(convertedInner, '&amp;', '&');
-        console.log(convertedInner);
-
-        elem.innerHTML = convertedInner;
+function replaceHTMLEntitiesWithRealCharacters(string) {
+    function replaceAll(string, search, replace) {
+      return string.split(search).join(replace);
     }
+
+    string = replaceAll(string,  '&lt;', '<');
+    string = replaceAll(string,  '&gt;', '>');
+
+    // This HTML entity should be the last since
+    // it can affect on the other entities.
+    string = replaceAll(string, '&amp;', '&');
+
+    return string;
 }
 
-function replaceAll(string, search, replace) {
-  return string.split(search).join(replace);
+function highlightCodeInQuestion() {
+	let questionBody = document.getElementById("questionBody");
+	highlightCodeInsideElement(questionBody);
 }
 
-function highlightQuestionCode()
-{
-	let  elem       = document.getElementById("questionBody");
-	let children    = elem.getElementsByTagName("*");
-	
-	for (let i = 0; i < children.length; ++i)
-		if (children[i].tagName === "CODE" && children[i].parentElement.tagName === "PRE")
-			hljs.highlightBlock(children[i]);
+function highlightCodeInAnswers() {
+	let answersBodies = document.getElementsByClassName("answerBody");
+
+	for (let a of answersBodies)
+	    highlightCodeInsideElement(a);
 }
 
-function highlightAllAnswersCode()
-{
-	let  elems = document.getElementsByClassName("answerBody");
+function highlightCodeInsideElement(element) {
+	let children = element.getElementsByTagName("*");
 
-	for (let i = 0; i < elems.length; ++i) {
-		let children = elems[i].getElementsByTagName("*");
-		
-		for (let j = 0; j < children.length; ++j)
-			if (children[j].tagName === "CODE" && children[j].parentElement.tagName === "PRE")
-				hljs.highlightBlock(children[j]);
-	}
+	for (let c of children)
+		if (c.tagName === "CODE" && c.parentElement.tagName === "PRE")
+			hljs.highlightBlock(c);
 }
