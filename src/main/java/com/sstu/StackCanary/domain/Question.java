@@ -11,32 +11,40 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Question")
 public class Question {
+    //==========================================
+    //
+    // Database Columns
+    //
+    //==========================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String title;
-    private String body;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author")
-    private User author;
+    private String title;
+
+    private String body;
 
     @Column(name = "creatingDateTime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creatingDateTime;
 
-    // This field must be initialized and updated manual by
-    // calling the formatCreatingDateTime() method.
-    @Transient
-    public String formattedCreatingDateTime;
+    //==========================================
+    //
+    // Relations
+    //
+    //==========================================
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "author")
+    private User author;
 
     @ManyToMany
     @JoinTable(
-            name = "question_tag",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
+        name = "question_tag",
+        joinColumns = @JoinColumn(name = "question_id"),
+        inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private Set<Tag> tags;
 
@@ -64,23 +72,39 @@ public class Question {
     )
     public Set<User> votedDownByUser;
 
-    // This field must be initialized and updated manual by
-    // calling the calculateVotes() method.
+    //==========================================
+    //
+    // Transient Fields
+    //
+    // This fields must be initialized manually by
+    // calling the corresponding entity's method.
+    //==========================================
+
+    @Transient
+    public String formattedCreatingDateTime;
+
     @Transient
     public Integer votes;
 
-    // This field must be initialized and updated manual by
-    // calling the calculateAnswersCount() method.
     @Transient
     public Integer answersCount;
 
-    // This field must be initialized and updated manual by
-    // calling the convertBodyToHTML() method.
     @Transient
     public String bodyInHTML;
 
-    protected Question() {
-    }
+    //==========================================
+    //
+    // Constructors
+    //
+    //==========================================
+
+    protected Question() {}
+
+    //==========================================
+    //
+    // Methods
+    //
+    //==========================================
 
     public void formatCreatingDateTime() {
         DateFormat d = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
@@ -95,10 +119,9 @@ public class Question {
         answersCount = this.answers.size();
     }
 
-    public void convertBodyToHTML() {
-        Parser parser = Parser.builder().build();
-        Node document = parser.parse(body);
-        HtmlRenderer renderer = HtmlRenderer.builder().escapeHtml(true).build();
-        bodyInHTML = renderer.render(document);
+    public void convertBodyFromMarkdownToHTML() {
+        Node           document  =  Parser.builder().build().parse(body);
+        HtmlRenderer   renderer  =  HtmlRenderer.builder().escapeHtml(true).build();
+        bodyInHTML               =  renderer.render(document);
     }
 }

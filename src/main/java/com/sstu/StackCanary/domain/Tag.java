@@ -4,27 +4,32 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "Tag")
 public class Tag {
+    //==========================================
+    //
+    // Database Columns
+    //
+    //==========================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
 
+    //==========================================
+    //
+    // Relations
+    //
+    //==========================================
+
     @ManyToMany(mappedBy = "tags")
     private Set<Question> questions;
 
-    protected Tag() { }
+    //==========================================
+    //
+    // Constructors
+    //
+    //==========================================
 
-    public Tag(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    protected Tag() {}
 }

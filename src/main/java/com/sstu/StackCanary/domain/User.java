@@ -4,12 +4,23 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "User")
 public class User {
+    //==========================================
+    //
+    // Database Columns
+    //
+    //==========================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nickname;
+
+    //==========================================
+    //
+    // Relations
+    //
+    //==========================================
 
     @ManyToMany(mappedBy = "votedUpByUser")
     private Set<Question> questionsVotedUpQuestions;
@@ -23,5 +34,11 @@ public class User {
     @ManyToMany(mappedBy = "votedDownByUser")
     private Set<Question> answersVotedDownQuestions;
 
-    protected User() { }
+    //==========================================
+    //
+    // Constructors
+    //
+    //==========================================
+
+    protected User() {}
 }

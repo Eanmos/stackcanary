@@ -11,25 +11,31 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "Answer")
 public class Answer {
+    //==========================================
+    //
+    // Database Columns
+    //
+    //==========================================
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String body;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "author")
-    private User author;
-
     @Column(name = "creatingDateTime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
     private Date creatingDateTime;
 
-    // This field must be initialized manual by
-    // calling the formatCreatingDateTime() method.
-    @Transient
-    private String formattedCreatingDateTime;
+    //==========================================
+    //
+    // Relations
+    //
+    //==========================================
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "author")
+    private User author;
 
     @ManyToMany(mappedBy = "answers")
     private Set<Question> questions;
@@ -50,17 +56,36 @@ public class Answer {
     )
     public Set<User> votedDownByUser;
 
-    // This field must be initialized and updated manual by
-    // calling the calculateVotes() method.
+    //==========================================
+    //
+    // Transient Fields
+    //
+    // This fields must be initialized manually by
+    // calling the corresponding entity's method.
+    //==========================================
+
+    @Transient
+    private String formattedCreatingDateTime;
+
     @Transient
     public Integer votes;
 
-    // This field must be initialized and updated manual by
-    // calling the convertBodyToHTML() method.
     @Transient
     public String bodyInHTML;
 
-    protected Answer() { }
+    //==========================================
+    //
+    // Constructors
+    //
+    //==========================================
+
+    protected Answer() {}
+
+    //==========================================
+    //
+    // Methods
+    //
+    //==========================================
 
     public void formatCreatingDateTime() {
         DateFormat d = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
@@ -71,10 +96,9 @@ public class Answer {
         votes = votedUpByUser.size() - votedDownByUser.size();
     }
 
-    public void convertBodyToHTML() {
-        Parser parser = Parser.builder().build();
-        Node document = parser.parse(body);
-        HtmlRenderer renderer = HtmlRenderer.builder().escapeHtml(true).build();
-        bodyInHTML = renderer.render(document);
+    public void convertBodyFromMarkdownToHTML() {
+        Node           document  =  Parser.builder().build().parse(body);
+        HtmlRenderer   renderer  =  HtmlRenderer.builder().escapeHtml(true).build();
+        bodyInHTML               =  renderer.render(document);
     }
 }

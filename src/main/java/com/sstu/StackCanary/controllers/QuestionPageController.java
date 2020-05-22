@@ -22,12 +22,12 @@ public class QuestionPageController {
         q.formatCreatingDateTime();
         q.calculateVotes();
         q.calculateAnswersCount();
-        q.convertBodyToHTML();
+        q.convertBodyFromMarkdownToHTML();
 
         for (Answer a : q.answers) {
             a.formatCreatingDateTime();
             a.calculateVotes();
-            a.convertBodyToHTML();
+            a.convertBodyFromMarkdownToHTML();
         }
 
         model.put("question", q);

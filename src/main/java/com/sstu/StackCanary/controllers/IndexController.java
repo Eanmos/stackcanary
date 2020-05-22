@@ -4,7 +4,6 @@ import java.util.Map;
 
 import com.sstu.StackCanary.domain.Question;
 import com.sstu.StackCanary.repositories.QuestionRepository;
-import org.hibernate.QueryTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
