@@ -8,13 +8,26 @@ function renderQuestionAndAnswersBodies() {
 function convertQuestionBodyToHTML() {
 	let questionBody = document.getElementById("questionBody");
     questionBody.innerHTML = replaceHTMLEntitiesWithRealCharacters(questionBody.innerHTML);
+
+    // Add support for HTML tags inside Markdown code
+    // that comes from the server.
+    for (let e of questionBody.getElementsByTagName("*"))
+        if (e.tagName !== "CODE" && e.tagName !== "PRE")
+            e.innerHTML = replaceHTMLEntitiesWithRealCharacters(e.innerHTML);
 }
 
 function convertAnswersBodiesToHTML() {
 	let answersBodies = document.getElementsByClassName("answerBody");
 
-	for (let a of answersBodies)
+	for (let a of answersBodies) {
         a.innerHTML = replaceHTMLEntitiesWithRealCharacters(a.innerHTML);
+
+        // Add support for HTML tags inside Markdown code
+        // that comes from the server.
+        for (let e of a.getElementsByTagName("*"))
+            if (e.tagName !== "CODE")
+                e.innerHTML = replaceHTMLEntitiesWithRealCharacters(e.innerHTML);
+    }
 }
 
 function replaceHTMLEntitiesWithRealCharacters(string) {
@@ -22,12 +35,12 @@ function replaceHTMLEntitiesWithRealCharacters(string) {
       return string.split(search).join(replace);
     }
 
-    string = replaceAll(string,  '&lt;', '<');
-    string = replaceAll(string,  '&gt;', '>');
+    string = replaceAll(string,  "&lt;", "<");
+    string = replaceAll(string,  "&gt;", ">");
 
     // This HTML entity should be the last since
     // it can affect on the other entities.
-    string = replaceAll(string, '&amp;', '&');
+    string = replaceAll(string, "&amp;", "&");
 
     return string;
 }
