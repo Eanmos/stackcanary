@@ -42,12 +42,12 @@ Main Question/Answer Block Style
 
 /*
 =======================================
-Question/Answer Rating
+Question/Answer Votes
 =======================================
 */
 
-.questionRating,
-.answerRating {
+.questionVotes,
+.answerVotes {
 	font: 17px "Lato";
 }
 
@@ -140,6 +140,11 @@ Question/Answer Body
 	border-left: 3px solid #ccc;
 	margin-left: 0;
 	padding-left: 10px;
+}
+
+#questionBody blockquote:first-child,
+.answerBody blockquote:first-child {
+	margin-top: 0;
 }
 
 /*

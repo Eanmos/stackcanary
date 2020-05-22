@@ -1,22 +1,21 @@
 <html>
     <head>
-        <title>Stack Canary</title>
+        <title>{{question.title}}</title>
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap">
         <link rel="stylesheet" href="style/question.css">
         <link rel="stylesheet" href="style/googlecode.css">
 
-        <script defer src="lib/markdown.min.js"></script>
         <script defer src="lib/highlight.js"></script>
         <script defer src="scripts/questionAndAnswersBodyRendering.js"></script>
     </head>
     <body onload="renderQuestionAndAnswersBody();">
         <div class="question">
             <div class="left">
-                <div id="questionRatingUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
-                <div class="questionRating">{{question.rating}}</div>
-                <div id="questionRatingDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+                <div id="questionVoteUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                <div class="questionVotes">{{question.votes}}</div>
+                <div id="questionVoteDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
             </div>
 
             <div class="main">
@@ -50,9 +49,9 @@
             {{#question.answers}}
             <div class="answer">
                 <div class="left">
-                    <div id="answerRatingUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
-                    <div class="answerRating">{{rating}}</div>
-                    <div id="answerRatingDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+                    <div id="answerVoteUpButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                    <div class="answerVotes">{{votes}}</div>
+                    <div id="answerVoteDownButton"><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
                 </div>
 
                 <div class="main">

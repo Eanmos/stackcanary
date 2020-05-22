@@ -1,0 +1,165 @@
+INSERT INTO user(nickname)
+VALUES
+("eanmos"),
+("super"),
+("Andrew Henle"),
+("Mike Nakis");
+
+INSERT INTO tag(name)
+VALUES
+("c"),
+("c++"),
+("arrays"),
+("pointers"),
+("gcc"),
+("clang"),
+("language-lawyer");
+
+INSERT INTO question(title, body, author, creating_date_time)
+VALUES
+("c++ c-style zero-initialization { 0 }",
+"https://en.cppreference.com/w/cpp/language/zero_initialization shows that zero-initialization happens in the following scenario:
+
+    int array[32] = {};
+
+; but never says anything about this:
+
+    int array[32] = { 0 };
+
+Does the latter also zero-initialize the whole array in c++, or only the first element? If so, is it also true for structs?",
+2, "2020-01-25 20:54:39"),
+("Why two identical pointers do not compare equal with -O1?",
+"    #include <stdio.h>
+    
+    int main(void)
+    {
+        int a, b;
+        int *p = &a;
+    
+    #ifdef __clang__
+        int *q = &b + 1;
+    #elif __GNUC__
+        int *q = &b - 1;
+    #endif
+    
+        printf(\"%p %p %d\\n\", (void *)p, (void *)q, p == q);
+    }
+
+C11 § 6.5.9 \ 6 says that
+
+> Two pointers compare equal if and only if both are null pointers, both are pointers to the same object (including a pointer to an object and a subobject at its beginning) or function, both are pointers to one past the last element of the same array object, or one is a pointer to one past the end of one array object and the other is a pointer to the start of a different array object that happens to immediately follow the first array object in the address space.
+
+I have tested it four different ways:
+
+1. Clang 9.0.1 with `-01` option;
+2. Clang 9.0.1 without any options;
+3. GCC 9.2.0 with `-01` option;
+4. GCC 9.2.9 without any options.
+
+The results are the following:
+
+    $ ./prog_clang
+    0x7ffebf0a65d4 0x7ffebf0a65d4 1
+    $ ./prog_clang_01
+    0x7ffd9931b9bc 0x7ffd9931b9bc 1
+    $ ./prog_gcc
+    0x7ffea055a980 0x7ffea055a980 1
+    $ ./prog_gcc_01
+    0x7fffd5fa5490 0x7fffd5fa5490 0
+
+What is the correct behavior in this case?",
+1, "2020-01-16 21:21:39");
+
+INSERT INTO answer(body, author, creating_date_time)
+VALUES
+("ISO/IEC N489 [§9.4.1](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4849.pdf#subsection.9.4.1) states
+
+> - <sup>(5)</sup> For a non-union aggregate, each element that is not an explicitly initialized element is initialized as follows:
+> 
+>  - <sup>(5.1)</sup> If the element has a default member initializer (11.4), the element is initialized from that initializer.
+> 
+>  - <sup>(5.2)</sup> Otherwise, if the element is not a reference, the element is copy-initialized from an empty initializer list (9.4.4).
+> 
+>  - <sup>(5.3)</sup> Otherwise, the program is ill-formed.
+
+[§9.4.4](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4849.pdf#subsection.9.4.4) states
+
+> - <sup>(3.11)</sup> Otherwise, if the initializer list has no elements, the object is value-initialized.
+
+*Value-initialization* of a scalar leads to its *zero-initialization*. Thus, the second one explicitly initializes with 0 only `array[0]` and the rest of the elements will be zero-initialized.
+
+---
+
+Thus, the following code
+
+    int array[4] = {13};
+
+initializes `array` with values
+
+    {13, 0, 0, 0}",
+1, "2020-01-25 21:03:24"),
+("> What is the correct behavior in this case?
+
+There is none.  Comparing pointers to or one past the end of **two completely unrelated objects** is undefined behavior.
+
+Per [footnote 109 of the C11 standard](https://port70.net/~nsz/c/c11/n1570.html#note109) (bolding is mine):
+
+> Two objects may be adjacent in memory because they are adjacent elements of a larger array or adjacent members of a structure with no padding between them, **or because the implementation chose to place them so, even though they are unrelated**. If prior invalid pointer operations (such as accesses outside array bounds) produced undefined behavior, subsequent comparisons also produce undefined behavior.",
+3, "2020-01-16 21:35:42"),
+("> Two pointers compare equal if and only if both are null pointers,
+
+they are not null
+
+> both are pointers to the same object (including a pointer to an object and a subobject at its beginning) or function
+
+they do not point to the same object, nor a subobject, nor a function
+
+> both are pointers to one past the last element of the same array object, 
+
+they are not pointers to array elements.
+
+> or one is a pointer to one past the end of one array object and the other is a pointer to the start of a different array object that happens to immediately follow the first array object in the address space.
+
+they are not pointers to array elements.
+
+----------------------
+
+So, according to the standard, your pointers do not meet the requirements for comparing as equal, and should have never compared as equal.
+
+Now, in your tests, in the first three cases, the pointers did in fact compare as equal. One can say that the compilers do not strictly adhere to the standard, because the standard says \"if and only if\", but as you have seen, clang and gcc without -O1 behave as if the standard said \"if\" without the \"and only if\" part.  The compilers simply do not try to take extra measures to ensure that the \"and only if\" part is respected, so they allow the pointers to compare as equal, as a matter of pure coincidence, despite the fact that according to the standard, they shouldn't.
+
+Since it was pure coincidence, in the last case the coincidence does not hold true anymore, due to a number of unknown reasons having to do with the compiler's implementation of optimizations.  The compiler may have decided to reverse the order of the variables on the stack, or to put them farther away from each other, or who knows what.",
+4, "2020-01-16 21:31:33");
+
+INSERT INTO question_answer(question_id, answer_id)
+VALUES
+(1, 1),
+(2, 2),
+(2, 3);
+
+INSERT INTO question_tag(question_id, tag_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(2, 1),
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7);
+
+INSERT INTO question_vote_up(question_id, user_id)
+VALUES
+(1, 1),
+(1, 2),
+(2, 1),
+(2, 2),
+(2, 3);
+
+INSERT INTO question_vote_down(question_id, user_id)
+VALUES
+(2, 4);
+
+INSERT INTO answer_vote_up(answer_id, user_id)
+VALUES
+(1, 1);

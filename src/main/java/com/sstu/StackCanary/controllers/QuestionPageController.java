@@ -1,13 +1,10 @@
 package com.sstu.StackCanary.controllers;
 
 import java.util.Map;
-import java.util.Optional;
 
 import com.sstu.StackCanary.domain.Answer;
 import com.sstu.StackCanary.domain.Question;
-import com.sstu.StackCanary.repositories.AnswerRepository;
 import com.sstu.StackCanary.repositories.QuestionRepository;
-import org.hibernate.QueryTimeoutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,13 +20,13 @@ public class QuestionPageController {
         Question q = questionRepository.findById(id).get();
 
         q.formatCreatingDateTime();
-        q.calculateRating();
+        q.calculateVotes();
         q.calculateAnswersCount();
         q.convertBodyToHTML();
 
         for (Answer a : q.answers) {
             a.formatCreatingDateTime();
-            a.calculateRating();
+            a.calculateVotes();
             a.convertBodyToHTML();
         }
 

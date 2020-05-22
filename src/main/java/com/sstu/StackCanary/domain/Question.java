@@ -50,24 +50,24 @@ public class Question {
 
     @ManyToMany
     @JoinTable(
-            name = "question_rating_up",
+            name = "question_vote_up",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> ratedUpByUser;
+    public Set<User> votedUpByUser;
 
     @ManyToMany
     @JoinTable(
-            name = "question_rating_down",
+            name = "question_vote_down",
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> ratedDownByUser;
+    public Set<User> votedDownByUser;
 
     // This field must be initialized and updated manual by
-    // calling the calculateRating() method.
+    // calling the calculateVotes() method.
     @Transient
-    public Integer rating;
+    public Integer votes;
 
     // This field must be initialized and updated manual by
     // calling the calculateAnswersCount() method.
@@ -87,8 +87,8 @@ public class Question {
         formattedCreatingDateTime = d.format(creatingDateTime);
     }
 
-    public void calculateRating() {
-        rating = ratedUpByUser.size() - ratedDownByUser.size();
+    public void calculateVotes() {
+        votes = votedUpByUser.size() - votedDownByUser.size();
     }
 
     public void calculateAnswersCount() {

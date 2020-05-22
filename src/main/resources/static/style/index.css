@@ -70,16 +70,16 @@ Question Title
 
 /*
 =======================================
-Question Rating
+Question Votes
 =======================================
 */
 
-.questionRating {
+.questionVotes {
 	font: 17px "Lato";
 	margin-bottom: 3px;
 }
 
-.questionRatingLabel {
+.questionVotesLabel {
 	font: 12px "Lato";
 }
 

@@ -11,33 +11,17 @@ public class User {
     private Integer id;
     private String nickname;
 
-    @ManyToMany(mappedBy = "ratedUpByUser")
-    private Set<Question> questionsRatedUpQuestions;
+    @ManyToMany(mappedBy = "votedUpByUser")
+    private Set<Question> questionsVotedUpQuestions;
 
-    @ManyToMany(mappedBy = "ratedDownByUser")
-    private Set<Question> questionsRatedDownQuestions;
+    @ManyToMany(mappedBy = "votedDownByUser")
+    private Set<Question> questionsVotedDownQuestions;
 
-    @ManyToMany(mappedBy = "ratedUpByUser")
-    private Set<Question> answersRatedUpQuestions;
+    @ManyToMany(mappedBy = "votedUpByUser")
+    private Set<Question> answersVotedUpQuestions;
 
-    @ManyToMany(mappedBy = "ratedDownByUser")
-    private Set<Question> answersRatedDownQuestions;
+    @ManyToMany(mappedBy = "votedDownByUser")
+    private Set<Question> answersVotedDownQuestions;
 
     protected User() { }
-
-    public User(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
 }

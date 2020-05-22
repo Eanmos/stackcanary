@@ -19,7 +19,7 @@ public class IndexController {
         Iterable<Question> questions = questionRepository.findAll();
 
         for (Question q : questions) {
-            q.calculateRating();
+            q.calculateVotes();
             q.formatCreatingDateTime();
         }
 
