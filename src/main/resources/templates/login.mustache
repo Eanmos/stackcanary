@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login | StackCanary</title>
+        <meta charset="UTF-8" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/static/stylesheets/login.css" />
+    </head>
+
+    <body>
+        <div id="loginFormContainer">
+            <form id="loginForm" action="/login" method="post">
+                <div id="nicknameInputContainer">
+                    <label>Nickname <input id="nicknameInput" type="text" name="username"/></label>
+                </div>
+
+                <div id="passwordInputContainer">
+                    <label>Password <input id="passwordInput" type="password" name="password"/></label>
+                </div>
+
+                <div id="submitButtonContainer">
+                    <input id="submitButton" type="submit" value="Sign In"/>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
