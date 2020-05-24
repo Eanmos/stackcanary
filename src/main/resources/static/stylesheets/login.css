@@ -39,7 +39,6 @@ Login Form
                 0 20px 48px rgba(0,0,0,0.05),
                 0 1px 4px rgba(0,0,0,0.1);
     width: 270px;
-    height: 180px;
     padding: 30px;
     margin-bottom: 40px;
 }
@@ -92,6 +91,10 @@ Username and Password Inputs
 Login Button
 =======================================
 */
+
+#submitButtonContainer {
+    margin-bottom: 0;
+}
 
 #submitButton {
     border: none;

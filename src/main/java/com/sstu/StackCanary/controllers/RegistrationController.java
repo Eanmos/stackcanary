@@ -22,11 +22,20 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String registerUser(User user) {
+    public String registerUser(User user, Map<String, Object> model) {
+        if (userWithThisUsernameAlreadyExists(user)) {
+            model.put("userWithThisUsernameAlreadyExistsMessage", "User with this username already exists.");
+            return "registration";
+        }
+
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
         userRepository.save(user);
 
         return "redirect:/login";
+    }
+
+    private boolean userWithThisUsernameAlreadyExists(User u) {
+        return userRepository.findByUsername(u.getUsername()) != null;
     }
 }

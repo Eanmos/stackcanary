@@ -38,7 +38,6 @@ Registration Form
                 0 20px 48px rgba(0,0,0,0.05),
                 0 1px 4px rgba(0,0,0,0.1);
     width: 270px;
-    height: 180px;
     padding: 30px;
 }
 
@@ -50,6 +49,18 @@ Username and Password Labels
 
 #registrationForm label {
     font: bold 14px "Lato";
+}
+
+/*
+=======================================
+«User with this username already exists» Message Label
+=======================================
+*/
+
+#userWithThisUsernameAlreadyExistsMessage {
+    display: block;
+    color: #FF1E00;
+    font-size: 10px;
 }
 
 /*
@@ -90,6 +101,10 @@ Username and Password Inputs
 «Sign Up» Button
 =======================================
 */
+
+#submitButtonContainer {
+    margin-bottom: 0;
+}
 
 #submitButton {
     border: none;
