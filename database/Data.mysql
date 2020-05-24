@@ -1,9 +1,9 @@
-INSERT INTO user(username)
+INSERT INTO user(username, password, active)
 VALUES
-("eanmos"),
-("super"),
-("Andrew Henle"),
-("Mike Nakis");
+("eanmos", "password", 0),
+("super", "password", 0),
+("Andrew Henle", "password", 0),
+("Mike Nakis", "password", 0);
 
 INSERT INTO tag(name)
 VALUES
