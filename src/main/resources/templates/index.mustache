@@ -42,5 +42,14 @@
             </div>
             {{/questions}}
         </div>
+
+        <footer>
+            <form id="logoutForm" method="post" action="/logout">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                <input id="logoutButton" type="submit" value="Logout" />
+            </form>
+
+            <p id="copyrightLabel">site design / logo © 2020 Stack Canary Inc; user contributions licensed under cc by-sa. rev 2020.5.22.36891</p>
+        </footer>
     </body>
 </html>

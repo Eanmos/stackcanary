@@ -7,6 +7,8 @@ INDEX.HTML STYLESHEET
 */
 
 body {
+    display: flex;
+    flex-direction: column;
 	margin: 0 auto;
 	padding: 0;
 	width: 640px;
@@ -185,4 +187,60 @@ Question Info
 .questionInfo {
 	margin-top: 3px;
 	font: 12px "Lato";
+}
+
+/*
+===============================================================================
+
+FOOTER
+
+===============================================================================
+*/
+
+footer {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 40px;
+    padding-top: 40px;
+}
+
+/*
+=======================================
+Copyright Label
+=======================================
+*/
+
+#copyrightLabel {
+    color: #666;
+    font: 12px "Lato";
+    margin-top: 5px;
+}
+
+/*
+=======================================
+Logout Button
+=======================================
+*/
+
+#logoutForm {
+    margin: 0;
+}
+
+#logoutButton {
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: #666;
+    font: 12px "Lato";
+    outline: none;
+}
+
+#logoutButton:hover {
+    cursor: pointer;
+}
+
+#logoutButton:focus {
+    outline: none;
 }
