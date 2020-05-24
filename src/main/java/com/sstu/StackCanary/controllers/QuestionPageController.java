@@ -4,8 +4,10 @@ import java.util.Map;
 
 import com.sstu.StackCanary.domain.Answer;
 import com.sstu.StackCanary.domain.Question;
+import com.sstu.StackCanary.domain.User;
 import com.sstu.StackCanary.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +18,12 @@ public class QuestionPageController {
     private QuestionRepository questionRepository;
 
     @GetMapping("/q")
-    public String main(@RequestParam Integer id, Map<String, Object> model) {
+    public String main(@AuthenticationPrincipal User user,
+                       @RequestParam Integer id,
+                       Map<String, Object> model) {
+        if (user != null)
+            model.put("authorizedUser", user);
+
         // Assuming that the question with
         // given ID always exists.
         Question q = questionRepository.findById(id).get();
