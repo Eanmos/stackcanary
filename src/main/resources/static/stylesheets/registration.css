@@ -1,7 +1,7 @@
 /*
 ===============================================================================
 
-LOGIN.HTML STYLESHEET
+REGISTRATION.HTML STYLESHEET
 
 ===============================================================================
 */
@@ -16,20 +16,19 @@ body {
 
 /*
 =======================================
-Login Form
+Registration Form
 =======================================
 */
 
-#loginFormContainer {
+#registrationFormContainer {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100vh;
 }
 
-#loginForm {
+#registrationForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +40,6 @@ Login Form
     width: 270px;
     height: 180px;
     padding: 30px;
-    margin-bottom: 40px;
 }
 
 /*
@@ -50,7 +48,7 @@ Username and Password Labels
 =======================================
 */
 
-#loginForm label {
+#registrationForm label {
     font: bold 14px "Lato";
 }
 
@@ -89,7 +87,7 @@ Username and Password Inputs
 
 /*
 =======================================
-Login Button
+«Sign Up» Button
 =======================================
 */
 
@@ -120,24 +118,4 @@ Login Button
 #submitButton:active {
     background: #0064bd;
     border-top: 1px solid #0064bd;
-}
-
-/*
-=======================================
-«Do Not Have an Account» Label
-=======================================
-*/
-
-#doNotHaveAnAccountLabel {
-    font: 13px "Lato";
-    color: #222;
-}
-
-#registrationPageLink {
-    text-decoration: none;
-    color: #0077cc;
-}
-
-#registrationPageLink:hover {
-    color: #0095ff;
 }

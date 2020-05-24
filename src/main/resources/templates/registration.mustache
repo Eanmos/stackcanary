@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login | StackCanary</title>
+        <title>Registration | StackCanary</title>
         <meta charset="UTF-8" />
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="/static/stylesheets/login.css" />
+        <link rel="stylesheet" href="/static/stylesheets/registration.css" />
     </head>
 
     <body>
-        <div id="loginFormContainer">
-            <form id="loginForm" action="/login" method="post">
+        <div id="registrationFormContainer">
+            <form id="registrationForm" action="/registration" method="post">
                 <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
 
                 <div id="usernameInputContainer">
@@ -21,11 +21,9 @@
                 </div>
 
                 <div id="submitButtonContainer">
-                    <input id="submitButton" type="submit" value="Sign In"/>
+                    <input id="submitButton" type="submit" value="Sign Up"/>
                 </div>
             </form>
-
-            <span id="doNotHaveAnAccountLabel">Do not have an account? <a id="registrationPageLink"href="/registration">Sign Up</a></span>
         </div>
     </body>
 </html>
