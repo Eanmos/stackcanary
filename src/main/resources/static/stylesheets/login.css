@@ -44,7 +44,7 @@ Login Form
 
 /*
 =======================================
-Nickname and Password Labels.
+Username and Password Labels.
 =======================================
 */
 
@@ -54,18 +54,18 @@ Nickname and Password Labels.
 
 /*
 =======================================
-Nickname and Password Inputs.
+Username and Password Inputs.
 =======================================
 */
 
-#nicknameInputContainer,
+#usernameInputContainer,
 #passwordInputContainer,
 #submitButtonContainer {
     margin-bottom: 15px;
     width: 100%;
 }
 
-#nicknameInput,
+#usernameInput,
 #passwordInput {
     border: 1px solid rgb(187, 192, 196);
     border-radius: 3px;
@@ -78,7 +78,7 @@ Nickname and Password Inputs.
     outline: none;
 }
 
-#nicknameInput:focus,
+#usernameInput:focus,
 #passwordInput:focus {
     border-color: #6cbbf7;
     box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);

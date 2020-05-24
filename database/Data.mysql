@@ -1,4 +1,4 @@
-INSERT INTO user(nickname)
+INSERT INTO user(username)
 VALUES
 ("eanmos"),
 ("super"),

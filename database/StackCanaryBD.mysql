@@ -3,7 +3,7 @@ USE StackCanaryDB;
 
 CREATE TABLE user(
 	id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	nickname VARCHAR(20) NOT NULL
+	username VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE question(
