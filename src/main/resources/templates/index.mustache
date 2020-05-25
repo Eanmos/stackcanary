@@ -9,7 +9,7 @@
         <div id="questionsListHeader">
             <h1 id="questionsListHeaderLabel">Questions</h1>
 
-            <form id="askQuestionForm">
+            <form id="askQuestionForm" action="/askQuestion">
                 <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                 <input id="askQuestionButton" type="submit" value="Ask Question"/>
             </form>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Ask Question | Stack Canary</title>
+        <meta charset="UTF-8" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/static/stylesheets/askQuestion.css" />
+    </head>
+    <body>
+        <div id="askQuestionHeader">
+            <h1 id="askQuestionHeaderLabel">Ask Question</h1>
+        </div>
+
+        <form id="questionEditorForm">
+            <div id="questionTitleInputContainer">
+                <label>Title
+                    <input id="questionTitleInput" name="questionTitle" type="text" placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
+                </label>
+            </div>
+
+            <div id="questionBodyTextAreaContainer">
+                <label>Body
+                    <textarea spellcheck="false" id="questionBodyTextArea" name="questionBody"></textarea>
+                </label>
+            </div>
+        </form>
+
+        <footer>
+            {{#authorizedUser}}
+            <form id="logoutForm" method="post" action="/logout">
+                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                <input id="logoutButton" type="submit" value="Logout" />
+            </form>
+            {{/authorizedUser}}
+
+            <p id="copyrightLabel">site design / logo © 2020 Stack Canary Inc; user contributions licensed under cc by-sa. rev 2020.5.22.36891</p>
+        </footer>
+    </body>
+</html>
