@@ -68,6 +68,7 @@
             {{/question.answers}}
         </div>
 
+        {{#authorized}}
         <h2 id="yourAnswerLabel">Your Answer</h2>
 
         <form id="answerEditorForm" action="/q" method="post">
@@ -77,14 +78,15 @@
             <input type="hidden" name="questionId" value="{{question.id}}"></input>
             <input id="postAnswerButton" type="submit" value="Post your answer"/>
         </form>
+        {{/authorized}}
 
         <footer>
-            {{#authorizedUser}}
+            {{#authorized}}
             <form id="logoutForm" method="post" action="/logout">
                 <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                 <input id="logoutButton" type="submit" value="Logout" />
             </form>
-            {{/authorizedUser}}
+            {{/authorized}}
 
             <p id="copyrightLabel">site design / logo © 2020 Stack Canary Inc; user contributions licensed under cc by-sa. rev 2020.5.22.36891</p>
         </footer>

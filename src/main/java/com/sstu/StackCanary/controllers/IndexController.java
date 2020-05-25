@@ -18,9 +18,6 @@ public class IndexController {
     @GetMapping
     public String main(@AuthenticationPrincipal User user,
                        Map<String, Object> model) {
-        if (user != null)
-            model.put("authorizedUser", user);
-
         Iterable<Question> questions = questionRepository.findAll();
 
         // Prepare transient fields
@@ -35,6 +32,7 @@ public class IndexController {
         }
 
         model.put("questions", questions);
+        model.put("authorized", (user != null));
         return "index";
     }
 }

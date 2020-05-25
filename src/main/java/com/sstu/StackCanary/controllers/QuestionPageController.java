@@ -21,9 +21,6 @@ public class QuestionPageController {
     public String main(@AuthenticationPrincipal User user,
                        @RequestParam Integer id,
                        Map<String, Object> model) {
-        if (user != null)
-            model.put("authorizedUser", user);
-
         // Assuming that the question with
         // given ID always exists.
         Question q = questionRepository.findById(id).get();
@@ -50,6 +47,7 @@ public class QuestionPageController {
         }
 
         model.put("question", q);
+        model.put("authorized", (user != null));
         return "question";
     }
 }
