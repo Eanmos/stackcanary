@@ -288,29 +288,23 @@ footer {
     padding-top: 40px;
 }
 
-/*
-=======================================
-Copyright Label
-=======================================
-*/
-
-#copyrightLabel {
-    color: #666;
-    font: 12px "Lato";
-    margin-top: 5px;
+footer > ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-/*
-=======================================
-Logout Button
-=======================================
-*/
+footer > ul li {
+    display: inline;
+    margin: 0 2px;
+}
 
 #logoutForm {
     margin: 0;
 }
 
-#logoutButton {
+#logoutButton,
+#loginButton,
+#signUpButton {
     border: none;
     background: none;
     text-decoration: underline;
@@ -325,4 +319,16 @@ Logout Button
 
 #logoutButton:focus {
     outline: none;
+}
+
+/*
+=======================================
+Copyright Label
+=======================================
+*/
+
+#copyrightLabel {
+    color: #666;
+    font: 12px "Lato";
+    margin-top: 5px;
 }

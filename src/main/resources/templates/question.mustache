@@ -81,12 +81,24 @@
         {{/authorized}}
 
         <footer>
-            {{#authorized}}
-            <form id="logoutForm" method="post" action="/logout">
-                <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                <input id="logoutButton" type="submit" value="Logout" />
-            </form>
-            {{/authorized}}
+            <ul>
+                {{#authorized}}
+                <li>
+                    <form id="logoutForm" method="post" action="/logout">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input id="logoutButton" type="submit" value="Logout" />
+                    </form>
+                </li>
+                {{/authorized}}
+                {{^authorized}}
+                <li>
+                    <a id="loginButton" href="/login">Login</a>
+                </li>
+                <li>
+                    <a id="signUpButton" href="/registration">Sign Up</a>
+                </li>
+                {{/authorized}}
+            </ul>
 
             <p id="copyrightLabel">site design / logo © 2020 Stack Canary Inc; user contributions licensed under cc by-sa. rev 2020.5.22.36891</p>
         </footer>
