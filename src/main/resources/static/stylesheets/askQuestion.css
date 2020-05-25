@@ -58,17 +58,25 @@ QUESTION EDITOR FORM
 
 /*
 =======================================
-Question Title and Body Labels
+Question Title, Question Body and Tag Editor Labels
 =======================================
 */
 
-#questionEditorForm label {
+#questionEditorForm label,
+#tagEditorLabel {
     font: bold 16px "Lato";
+}
+
+#tagEditorSubLabel {
+    display: block;
+    font: 12px "Lato";
+    margin-top: 5px;
+    color: #666;
 }
 
 /*
 =======================================
-Question Title Input and Question Body Textarea
+Question Title Input and Question Body TextArea
 =======================================
 */
 
@@ -125,6 +133,78 @@ Question Title Input and Question Body Textarea
 #questionBodyTextArea::-webkit-resizer {
     border: none;
     background: #f5f5f5;
+}
+
+/*
+=======================================
+Tag Editor
+=======================================
+*/
+
+#tagEditor {
+    border: 1px solid rgb(187, 192, 196);
+    border-radius: 3px;
+    display: flex;
+    padding: 8px 8px;
+    font: 14px "Lato";
+    box-sizing: border-box;
+    margin-top: 10px;
+    outline: none;
+    width: 100%;
+    padding: 8px 8px;
+}
+
+/* This class will be set to the tagEditor DIV
+ * when tagEditorInput gets focus. See askQuestion.mustache.
+ */
+.tagEditorOnFocus {
+    border-color: #6cbbf7;
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, 0.15);
+    outline: 0;
+}
+
+#tagEditorInput {
+    border: none;
+    padding: 4px 0;
+    font: 14px "Lato";
+    flex-grow: 1;
+}
+
+#tagEditorInput:focus {
+    outline: none;
+}
+
+#renderedTags {
+    display: flex;
+}
+
+/* Elements with this style added to the page
+ * by JS script.
+ */
+.renderedTag {
+    display: flex;
+    color: #39739d;
+    background: #e1ecf4;
+    padding: 4px;
+    border-radius: 3px;
+    margin-right: 4px;
+    padding-left: 8px;
+}
+
+/* Elements with this style added to the page
+ * by JS script.
+ */
+.removeTagButton {
+    fill: #39739d;
+    padding: 2px;
+    border-radius: 3px;
+    margin-left: 2px;
+}
+
+.removeTagButton:hover {
+    fill: #fff;
+    background: #39739d;
+    cursor: pointer;
 }
 
 /*

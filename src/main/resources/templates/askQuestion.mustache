@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="/static/stylesheets/askQuestion.css" />
+        <script src="/static/scripts/questionEditor.js"></script>
     </head>
     <body>
         <div id="askQuestionHeader">
@@ -13,7 +14,7 @@
         <form id="questionEditorForm">
             <div id="questionTitleInputContainer">
                 <label>Title
-                    <input id="questionTitleInput" name="questionTitle" type="text" placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
+                    <input spellcheck="false" id="questionTitleInput" name="questionTitle" type="text" placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
                 </label>
             </div>
 
@@ -21,6 +22,19 @@
                 <label>Body
                     <textarea spellcheck="false" id="questionBodyTextArea" name="questionBody"></textarea>
                 </label>
+            </div>
+
+            <div id="tagEditorContainer">
+                <span id="tagEditorLabel">Tags</span>
+                <span id="tagEditorSubLabel">Add up to 5 tags to describe what your question is about.</span>
+                <div tabindex="0" id="tagEditor">
+                    <span id="renderedTags"></span>
+                    <input spellcheck="false"
+                           oninput="tagEditorInputOnInput();"
+                           onfocus="addClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
+                           onblur="removeClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
+                           id="tagEditorInput" />
+                </div>
             </div>
         </form>
 
