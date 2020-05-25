@@ -165,17 +165,18 @@ Question Tags List
 .questionTagsListItem {
 	background: #f3f3f3;
 	font: 12px "Lato";
-	display: inline;
+	display: inline-flex;
 	padding: 3px 6px;
+}
+
+.questionTagsListItem:hover {
+	background: #ededed;
+	cursor: pointer;
 }
 
 .questionTag {
 	color: #23629F;
 	text-decoration: none;
-}
-
-.questionTag:hover {
-	background: #ededed;
 }
 
 /*
