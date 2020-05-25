@@ -12,7 +12,7 @@ public class Tag {
     //==========================================
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
 
@@ -32,4 +32,8 @@ public class Tag {
     //==========================================
 
     protected Tag() {}
+
+    public Tag(String name) {
+        this.name = name;
+    }
 }

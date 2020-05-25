@@ -19,7 +19,7 @@ public class Question {
     //==========================================
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String title;
@@ -99,6 +99,26 @@ public class Question {
     //==========================================
 
     protected Question() {}
+
+    public Question(User author, String title, String body, Set<Tag> tags) {
+        this.author = author;
+        this.title = title;
+        this.body = body;
+        this.tags = tags;
+
+        // Assign current date and time.
+        this.creationDateTime = new Date();
+    }
+
+    //==========================================
+    //
+    // Getters and Setters
+    //
+    //==========================================
+
+    public Integer getId() {
+        return id;
+    }
 
     //==========================================
     //

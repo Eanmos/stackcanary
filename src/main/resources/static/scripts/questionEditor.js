@@ -24,6 +24,7 @@ function tagEditorInputOnInput() {
         tagsList.push(tagName);
         clearInput();
         renderTags();
+        updateTagInputs();
     }
 }
 
@@ -57,6 +58,19 @@ function removeRenderedTag(element) {
 
     removeItemFromArray(tagsList, tagIndex);
     renderTags();
+}
+
+function updateTagInputs() {
+    for (let i = 0; i < 5; ++i) {
+        let tag = document.getElementById("tag" + i);
+
+        if (tagsList[i] === undefined)
+            tag.name = "emptyTag";
+        else
+            tag.name = "tag";
+
+        tag.value = tagsList[i];
+    }
 }
 
 function removeLastCharacterInString(s) {
