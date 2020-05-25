@@ -70,7 +70,7 @@ The results are the following:
 What is the correct behavior in this case?",
 1, "2020-01-16 21:21:39");
 
-INSERT INTO answer(body, author, creation_date_time)
+INSERT INTO answer(body, author, creation_date_time, question)
 VALUES
 ("ISO/IEC N489 [§9.4.1](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/n4849.pdf#subsection.9.4.1) states
 
@@ -97,7 +97,7 @@ Thus, the following code
 initializes `array` with values
 
     {13, 0, 0, 0}",
-1, "2020-01-25 21:03:24"),
+1, "2020-01-25 21:03:24", 1),
 ("> What is the correct behavior in this case?
 
 There is none.  Comparing pointers to or one past the end of **two completely unrelated objects** is undefined behavior.
@@ -105,7 +105,7 @@ There is none.  Comparing pointers to or one past the end of **two completely un
 Per [footnote 109 of the C11 standard](https://port70.net/~nsz/c/c11/n1570.html#note109) (bolding is mine):
 
 > Two objects may be adjacent in memory because they are adjacent elements of a larger array or adjacent members of a structure with no padding between them, **or because the implementation chose to place them so, even though they are unrelated**. If prior invalid pointer operations (such as accesses outside array bounds) produced undefined behavior, subsequent comparisons also produce undefined behavior.",
-3, "2020-01-16 21:35:42"),
+3, "2020-01-16 21:35:42", 2),
 ("> Two pointers compare equal if and only if both are null pointers,
 
 they are not null
@@ -129,13 +129,7 @@ So, according to the standard, your pointers do not meet the requirements for co
 Now, in your tests, in the first three cases, the pointers did in fact compare as equal. One can say that the compilers do not strictly adhere to the standard, because the standard says \"if and only if\", but as you have seen, clang and gcc without -O1 behave as if the standard said \"if\" without the \"and only if\" part.  The compilers simply do not try to take extra measures to ensure that the \"and only if\" part is respected, so they allow the pointers to compare as equal, as a matter of pure coincidence, despite the fact that according to the standard, they shouldn't.
 
 Since it was pure coincidence, in the last case the coincidence does not hold true anymore, due to a number of unknown reasons having to do with the compiler's implementation of optimizations.  The compiler may have decided to reverse the order of the variables on the stack, or to put them farther away from each other, or who knows what.",
-4, "2020-01-16 21:31:33");
-
-INSERT INTO question_answer(question_id, answer_id)
-VALUES
-(1, 1),
-(2, 2),
-(2, 3);
+4, "2020-01-16 21:31:33", 2);
 
 INSERT INTO question_tag(question_id, tag_id)
 VALUES

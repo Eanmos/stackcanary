@@ -48,12 +48,7 @@ public class Question {
     )
     private Set<Tag> tags;
 
-    @ManyToMany
-    @JoinTable(
-            name = "question_answer",
-            joinColumns = @JoinColumn(name = "question_id"),
-            inverseJoinColumns = @JoinColumn(name = "answer_id")
-    )
+    @OneToMany(mappedBy = "question")
     public Set<Answer> answers;
 
     @ManyToMany

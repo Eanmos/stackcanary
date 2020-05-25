@@ -37,8 +37,9 @@ public class Answer {
     @JoinColumn(name = "author")
     private User author;
 
-    @ManyToMany(mappedBy = "answers")
-    private Set<Question> questions;
+    @ManyToOne
+    @JoinColumn(name = "question", nullable = false)
+    private Question question;
 
     @ManyToMany
     @JoinTable(
