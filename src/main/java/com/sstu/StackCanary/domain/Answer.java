@@ -19,7 +19,7 @@ public class Answer {
     //==========================================
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String body;
 
@@ -81,6 +81,15 @@ public class Answer {
     //==========================================
 
     protected Answer() {}
+
+    public Answer(User author, Question question, String body) {
+        this.author = author;
+        this.question = question;
+        this.body = body;
+
+        // Assign current date and time.
+        this.creationDateTime = new Date();
+    }
 
     //==========================================
     //

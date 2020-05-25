@@ -68,6 +68,16 @@
             {{/question.answers}}
         </div>
 
+        <h2 id="yourAnswerLabel">Your Answer</h2>
+
+        <form id="answerEditorForm" action="/q" method="post">
+            <textarea spellcheck="false" id="answerBodyTextArea" name="body"></textarea>
+
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+            <input type="hidden" name="questionId" value="{{question.id}}"></input>
+            <input id="postAnswerButton" type="submit" value="Post your answer"/>
+        </form>
+
         <footer>
             {{#authorizedUser}}
             <form id="logoutForm" method="post" action="/logout">
