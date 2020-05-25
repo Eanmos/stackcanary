@@ -40,6 +40,10 @@ Main Question/Answer Block Style
 	padding-right: 15px;
 }
 
+.question > .main {
+    overflow: hidden;
+}
+
 /*
 =======================================
 Question/Answer Votes
