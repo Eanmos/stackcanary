@@ -37,6 +37,7 @@ public class QuestionPageController {
         q.calculateAnswersCount();
         q.formatCreationDateTime();
         q.convertBodyFromMarkdownToHTML();
+        q.setVotedByActiveUser(user);
 
         // Prepare transient fields of the each answer as well
         // as we have done with the question.
@@ -44,6 +45,7 @@ public class QuestionPageController {
             a.formatCreationDateTime();
             a.calculateVotes();
             a.convertBodyFromMarkdownToHTML();
+            a.setVotedByActiveUser(user);
         }
 
         model.put("question", q);

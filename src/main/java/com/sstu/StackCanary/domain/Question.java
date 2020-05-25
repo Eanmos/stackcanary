@@ -40,7 +40,7 @@ public class Question {
     @JoinColumn(name = "author")
     private User author;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "question_tag",
         joinColumns = @JoinColumn(name = "question_id"),
@@ -48,10 +48,10 @@ public class Question {
     )
     private Set<Tag> tags;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
     public Set<Answer> answers;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "question_vote_up",
             joinColumns = @JoinColumn(name = "question_id"),
@@ -59,7 +59,7 @@ public class Question {
     )
     public Set<User> votedUpByUsers;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "question_vote_down",
             joinColumns = @JoinColumn(name = "question_id"),
@@ -86,6 +86,12 @@ public class Question {
 
     @Transient
     public String bodyInHTML;
+
+    @Transient
+    public boolean votedUpByActiveUser;
+
+    @Transient
+    public boolean votedDownByActiveUser;
 
     //==========================================
     //
@@ -138,5 +144,29 @@ public class Question {
         Node           document  =  Parser.builder().build().parse(body);
         HtmlRenderer   renderer  =  HtmlRenderer.builder().escapeHtml(true).build();
         bodyInHTML               =  renderer.render(document);
+    }
+
+    public void setVotedByActiveUser(User user) {
+        if (user == null) {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = false;
+        } else if (thisQuestionIsFoundInSetById(user.getVotedUpQuestions())) {
+            this.votedUpByActiveUser = true;
+            this.votedDownByActiveUser = false;
+        } else if (thisQuestionIsFoundInSetById(user.getVotedDownQuestions())) {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = true;
+        } else {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = false;
+        }
+    }
+
+    private boolean thisQuestionIsFoundInSetById(Set<Question> s) {
+        for (Question q : s)
+            if (q.id == this.id)
+                return true;
+
+        return false;
     }
 }

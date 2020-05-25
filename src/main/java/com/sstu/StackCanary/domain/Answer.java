@@ -74,6 +74,12 @@ public class Answer {
     @Transient
     public String bodyInHTML;
 
+    @Transient
+    public boolean votedUpByActiveUser;
+
+    @Transient
+    public boolean votedDownByActiveUser;
+
     //==========================================
     //
     // Constructors
@@ -110,5 +116,29 @@ public class Answer {
         Node           document  =  Parser.builder().build().parse(body);
         HtmlRenderer   renderer  =  HtmlRenderer.builder().escapeHtml(true).build();
         bodyInHTML               =  renderer.render(document);
+    }
+
+    public void setVotedByActiveUser(User user) {
+        if (user == null) {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = false;
+        } else if (thisAnswerIsFoundInSetById(user.getVotedUpAnswers())) {
+            this.votedUpByActiveUser = true;
+            this.votedDownByActiveUser = false;
+        } else if (thisAnswerIsFoundInSetById(user.getVotedDownAnswers())) {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = true;
+        } else {
+            this.votedUpByActiveUser = false;
+            this.votedDownByActiveUser = false;
+        }
+    }
+
+    private boolean thisAnswerIsFoundInSetById(Set<Answer> s) {
+        for (Answer a : s)
+            if (a.id == this.id)
+                return true;
+
+        return false;
     }
 }

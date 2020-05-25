@@ -34,16 +34,16 @@ public class User implements UserDetails {
     //
     //==========================================
 
-    @ManyToMany(mappedBy = "votedUpByUsers")
+    @ManyToMany(mappedBy = "votedUpByUsers", fetch = FetchType.EAGER)
     private Set<Question> votedUpQuestions;
 
-    @ManyToMany(mappedBy = "votedDownByUsers")
+    @ManyToMany(mappedBy = "votedDownByUsers", fetch = FetchType.EAGER)
     private Set<Question> votedDownQuestions;
 
-    @ManyToMany(mappedBy = "votedUpByUsers")
+    @ManyToMany(mappedBy = "votedUpByUsers", fetch = FetchType.EAGER)
     private Set<Answer> votedUpAnswers;
 
-    @ManyToMany(mappedBy = "votedDownByUsers")
+    @ManyToMany(mappedBy = "votedDownByUsers", fetch = FetchType.EAGER)
     private Set<Answer> votedDownAnswers;
 
     //==========================================
@@ -98,6 +98,38 @@ public class User implements UserDetails {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Set<Question> getVotedUpQuestions() {
+        return votedUpQuestions;
+    }
+
+    public void setVotedUpQuestions(Set<Question> votedUpQuestions) {
+        this.votedUpQuestions = votedUpQuestions;
+    }
+
+    public Set<Question> getVotedDownQuestions() {
+        return votedDownQuestions;
+    }
+
+    public void setVotedDownQuestions(Set<Question> votedDownQuestions) {
+        this.votedDownQuestions = votedDownQuestions;
+    }
+
+    public Set<Answer> getVotedUpAnswers() {
+        return votedUpAnswers;
+    }
+
+    public void setVotedUpAnswers(Set<Answer> votedUpAnswers) {
+        this.votedUpAnswers = votedUpAnswers;
+    }
+
+    public Set<Answer> getVotedDownAnswers() {
+        return votedDownAnswers;
+    }
+
+    public void setVotedDownAnswers(Set<Answer> votedDownAnswers) {
+        this.votedDownAnswers = votedDownAnswers;
     }
 
     //==========================================

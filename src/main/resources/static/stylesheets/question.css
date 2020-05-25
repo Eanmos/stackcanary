@@ -55,6 +55,11 @@ Question/Answer Votes
 	font: 17px "Lato";
 }
 
+.votedUpByActiveUser,
+.votedDownByActiveUser {
+    fill: #f48024;
+}
+
 /*
 =======================================
 Question Title
