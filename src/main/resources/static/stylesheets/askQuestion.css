@@ -168,6 +168,9 @@ Tag Editor
     padding: 4px 0;
     font: 14px "Lato";
     flex-grow: 1;
+
+    /* Devil CSS hack. */
+    width: 1px;
 }
 
 #tagEditorInput:focus {

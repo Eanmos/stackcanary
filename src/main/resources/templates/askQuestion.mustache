@@ -14,13 +14,24 @@
         <form id="questionEditorForm" action="/askQuestion" method="post">
             <div id="questionTitleInputContainer">
                 <label>Title
-                    <input spellcheck="false" id="questionTitleInput" name="title" type="text" placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
+                    <input autocomplete="off"
+                            autofocus
+                            required
+                            spellcheck="false"
+                            id="questionTitleInput"
+                            name="title"
+                            type="text"
+                            placeholder="e.g. Is there an R function for finding the index of an element in a vector?" />
                 </label>
             </div>
 
             <div id="questionBodyTextAreaContainer">
                 <label>Body
-                    <textarea spellcheck="false" id="questionBodyTextArea" name="body"></textarea>
+                    <textarea autocomplete="off"
+                                required
+                                spellcheck="false"
+                                id="questionBodyTextArea"
+                                name="body"></textarea>
                 </label>
             </div>
 
@@ -29,11 +40,12 @@
                 <span id="tagEditorSubLabel">Add up to 5 tags to describe what your question is about.</span>
                 <div tabindex="0" id="tagEditor">
                     <span id="renderedTags"></span>
-                    <input spellcheck="false"
-                           oninput="tagEditorInputOnInput();"
-                           onfocus="addClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
-                           onblur="removeClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
-                           id="tagEditorInput" />
+                    <input autocomplete="off"
+                            spellcheck="false"
+                            oninput="tagEditorInputOnInput();"
+                            onfocus="addClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
+                            onblur="removeClass(document.getElementById('tagEditor'), 'tagEditorOnFocus');"
+                            id="tagEditorInput" />
                 </div>
             </div>
 
