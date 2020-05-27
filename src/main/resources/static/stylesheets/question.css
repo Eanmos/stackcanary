@@ -40,7 +40,8 @@ Main Question/Answer Block Style
 	padding-right: 15px;
 }
 
-.question > .main {
+.question > .main,
+.answer > .main {
     overflow: hidden;
 }
 
