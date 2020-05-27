@@ -188,6 +188,13 @@ Question/Answer Body
     margin-top: 0;
 }
 
+#questionBody hr,
+.answerBody hr {
+    border: none;
+    background: #ccc;
+    height: 1px;
+}
+
 /*
 ===============================================================================
 
