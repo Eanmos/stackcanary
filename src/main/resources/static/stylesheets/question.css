@@ -158,6 +158,36 @@ Question/Answer Body
 	margin-top: 0;
 }
 
+#questionBody h1,
+.answerBody h1 {
+    font: bold 21px "Lato";
+}
+
+#questionBody h1:first-child,
+.answerBody h1:first-child {
+    margin-top: 0;
+}
+
+#questionBody h2,
+.answerBody h2 {
+    font: bold 19px "Lato";
+}
+
+#questionBody h2:first-child,
+.answerBody h2:first-child {
+    margin-top: 0;
+}
+
+#questionBody h3,
+.answerBody h3 {
+    font: bold 17px "Lato";
+}
+
+#questionBody h3:first-child,
+.answerBody h3:first-child {
+    margin-top: 0;
+}
+
 /*
 ===============================================================================
 
