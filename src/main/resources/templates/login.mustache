@@ -13,11 +13,20 @@
                 <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
 
                 <div id="usernameInputContainer">
-                    <label>Username <input id="usernameInput" type="text" name="username"/></label>
+                    <label>Username
+                        <input autocomplete="off"
+                               required
+                               id="usernameInput"
+                               type="text"
+                               name="username"/></label>
                 </div>
 
                 <div id="passwordInputContainer">
-                    <label>Password <input id="passwordInput" type="password" name="password"/></label>
+                    <label>Password <input autocomplete="off"
+                                           required
+                                           id="passwordInput"
+                                           type="password"
+                                           name="password"/></label>
                 </div>
 
                 <div id="submitButtonContainer">

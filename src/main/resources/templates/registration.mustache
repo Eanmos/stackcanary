@@ -18,12 +18,20 @@
                             <span id="userWithThisUsernameAlreadyExistsMessage">{{userWithThisUsernameAlreadyExistsMessage}}</span>
                         {{/userWithThisUsernameAlreadyExistsMessage}}
 
-                        <input id="usernameInput" type="text" name="username"/>
+                        <input autocomplete="off"
+                               required
+                               id="usernameInput"
+                               type="text"
+                               name="username"/>
                     </label>
                 </div>
 
                 <div id="passwordInputContainer">
-                    <label>Password <input id="passwordInput" type="password" name="password"/></label>
+                    <label>Password <input autocomplete="off"
+                                           required
+                                           id="passwordInput"
+                                           type="password"
+                                           name="password"/></label>
                 </div>
 
                 <div id="submitButtonContainer">
