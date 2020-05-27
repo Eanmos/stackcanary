@@ -141,8 +141,8 @@ Question/Answer Body
 	padding: 1px 4px;
 }
 
-#questionBody p a,
-.answerBody p a {
+#questionBody a,
+.answerBody a {
 	color: #23629F;
 }
 
