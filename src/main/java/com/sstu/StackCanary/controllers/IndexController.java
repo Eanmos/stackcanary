@@ -26,10 +26,8 @@ public class IndexController {
         // — votes
         //
         // that will be used in the template.
-        for (Question q : questions) {
-            q.calculateVotes();
-            q.formatCreationDateTime();
-        }
+        questions.forEach(Question::calculateVotes);
+        questions.forEach(Question::formatCreationDateTime);
 
         model.put("questions", questions);
         model.put("authorized", (user != null));

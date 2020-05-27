@@ -41,15 +41,14 @@ public class QuestionPageController {
 
         // Prepare transient fields of the each answer as well
         // as we have done with the question.
-        for (Answer a : q.answers) {
-            a.formatCreationDateTime();
-            a.calculateVotes();
-            a.convertBodyFromMarkdownToHTML();
-            a.setVotedByActiveUser(user);
-        }
+        q.answers.forEach(Answer::formatCreationDateTime);
+        q.answers.forEach(Answer::calculateVotes);
+        q.answers.forEach(Answer::convertBodyFromMarkdownToHTML);
+        q.answers.forEach(a -> a.setVotedByActiveUser(user));
 
         model.put("question", q);
         model.put("authorized", (user != null));
+
         return "question";
     }
 }
