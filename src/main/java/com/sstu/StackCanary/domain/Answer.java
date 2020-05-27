@@ -21,6 +21,8 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String body;
 
     @Column(name = "creationDateTime", columnDefinition = "DATETIME")

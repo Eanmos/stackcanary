@@ -24,6 +24,7 @@ public class Question {
 
     private String title;
 
+    @Column(columnDefinition = "LONGTEXT")
     private String body;
 
     @Column(name = "creationDateTime", columnDefinition = "DATETIME")
