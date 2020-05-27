@@ -169,7 +169,7 @@ Tag Editor
     font: 14px "Lato";
     flex-grow: 1;
 
-    /* Devil CSS hack. */
+    /* I am not sure why this works but it fixes the problem. */
     width: 1px;
 }
 
