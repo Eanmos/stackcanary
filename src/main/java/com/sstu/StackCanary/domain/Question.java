@@ -151,10 +151,10 @@ public class Question {
         if (user == null) {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = false;
-        } else if (thisQuestionIsFoundInSetById(user.getVotedUpQuestions())) {
+        } else if (user.getVotedUpQuestions().contains(this)) {
             this.votedUpByActiveUser = true;
             this.votedDownByActiveUser = false;
-        } else if (thisQuestionIsFoundInSetById(user.getVotedDownQuestions())) {
+        } else if (user.getVotedDownQuestions().contains(this)) {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = true;
         } else {
@@ -163,11 +163,22 @@ public class Question {
         }
     }
 
-    private boolean thisQuestionIsFoundInSetById(Set<Question> s) {
-        for (Question q : s)
-            if (q.id == this.id)
-                return true;
+    @Override
+    public boolean equals(Object that) {
+        if (this == that)
+            return true;
 
-        return false;
+        if (!(that instanceof Question))
+            return false;
+
+        Question thatQuestion = (Question) that;
+
+        return this.id.equals(thatQuestion.id);
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 37;
+        return PRIME * id.hashCode();
     }
 }

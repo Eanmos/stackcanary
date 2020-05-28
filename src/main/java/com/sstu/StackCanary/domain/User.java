@@ -132,6 +132,25 @@ public class User implements UserDetails {
         this.votedDownAnswers = votedDownAnswers;
     }
 
+    @Override
+    public boolean equals(Object that) {
+        if (this == that)
+            return true;
+
+        if (!(that instanceof User))
+            return false;
+
+        User thatUser = (User) that;
+
+        return this.id.equals(thatUser.id);
+    }
+
+    @Override
+    public int hashCode() {
+        final int PRIME = 37;
+        return PRIME * id.hashCode();
+    }
+
     //==========================================
     //
     // UserDetails abstract methods implementation
