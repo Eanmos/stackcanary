@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>{{question.title}}</title>
         <meta charset="UTF-8">
@@ -16,7 +17,7 @@
                 {{^question.votedUpByActiveUser}}
                 <form action="/voteUpForQuestion" method="post"  class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
+                    <input type="hidden" name="questionId" value="{{question.id}}" />
                     <button id="questionVoteUpButton">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                     </button>
@@ -26,8 +27,8 @@
                 {{#question.votedUpByActiveUser}}
                 <form action="/undoVoteUpForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
-                    <input type="hidden" name="vote" value="up"></input>
+                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="vote" value="up" />
                     <button id="questionVoteUpButton" class="votedUpByActiveUser">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                     </button>
@@ -39,8 +40,8 @@
                 {{^question.votedDownByActiveUser}}
                 <form  action="/voteDownForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
-                    <input type="hidden" name="vote" value="down"></input>
+                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="vote" value="down" />
                     <button id="questionVoteDownButton">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
                     </button>
@@ -50,8 +51,8 @@
                 {{#question.votedDownByActiveUser}}
                 <form action="/undoVoteDownForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
-                    <input type="hidden" name="vote" value="down"></input>
+                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="vote" value="down" />
                     <button id="questionVoteDownButton" class="votedDownByActiveUser">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
                     </button>
@@ -94,8 +95,8 @@
                     <form action="/voteUpForAnswer" method="post"  class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
-                        <input type="hidden" name="answerId" value="{{id}}"></input>
-                        <button id="answerVoteUpButton">
+                        <input type="hidden" name="answerId" value="{{id}}" />
+                        <button class="answerVoteUpButton">
                             <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                         </button>
                     </form>
@@ -105,9 +106,9 @@
                     <form action="/undoVoteUpForAnswer" method="post" class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
-                        <input type="hidden" name="answerId" value="{{id}}"></input>
-                        <input type="hidden" name="vote" value="up"></input>
-                        <button id="answerVoteUpButton" class="votedUpByActiveUser">
+                        <input type="hidden" name="answerId" value="{{id}}" />
+                        <input type="hidden" name="vote" value="up" />
+                        <button class="answerVoteUpButton votedUpByActiveUser">
                             <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                         </button>
                     </form>
@@ -119,9 +120,9 @@
                     <form  action="/voteDownForAnswer" method="post" class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
-                        <input type="hidden" name="answerId" value="{{id}}"></input>
-                        <input type="hidden" name="vote" value="down"></input>
-                        <button id="answerVoteDownButton">
+                        <input type="hidden" name="answerId" value="{{id}}" />
+                        <input type="hidden" name="vote" value="down" />
+                        <button class="answerVoteDownButton">
                             <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
                         </button>
                     </form>
@@ -131,9 +132,9 @@
                     <form action="/undoVoteDownForAnswer" method="post" class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
-                        <input type="hidden" name="answerId" value="{{id}}"></input>
-                        <input type="hidden" name="vote" value="down"></input>
-                        <button id="answerVoteDownButton" class="votedDownByActiveUser">
+                        <input type="hidden" name="answerId" value="{{id}}" />
+                        <input type="hidden" name="vote" value="down" />
+                        <button class="answerVoteDownButton votedDownByActiveUser">
                             <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
                         </button>
                     </form>
@@ -161,7 +162,7 @@
             <textarea spellcheck="false" id="answerBodyTextArea" name="body"></textarea>
 
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-            <input type="hidden" name="questionId" value="{{question.id}}"></input>
+            <input type="hidden" name="questionId" value="{{question.id}}" />
             <input id="postAnswerButton" type="submit" value="Post your answer"/>
         </form>
         {{/authorized}}

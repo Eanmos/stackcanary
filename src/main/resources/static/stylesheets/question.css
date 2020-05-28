@@ -63,8 +63,8 @@ Question/Answer Votes
 
 #questionVoteDownButton,
 #questionVoteUpButton,
-#answerVoteDownButton,
-#answerVoteUpButton {
+.answerVoteDownButton,
+.answerVoteUpButton {
     margin: 0;
     border: none;
     background: transparent;
@@ -74,15 +74,15 @@ Question/Answer Votes
 
 #questionVoteDownButton:hover,
 #questionVoteUpButton:hover,
-#answerVoteDownButton:hover,
-#answerVoteUpButton:hover {
+.answerVoteDownButton:hover,
+.answerVoteUpButton:hover {
     cursor: pointer;
 }
 
 #questionVoteDownButton:focus,
 #questionVoteUpButton:focus,
-#answerVoteDownButton:focus,
-#answerVoteUpButton:focus {
+.answerVoteDownButton:focus,
+.answerVoteUpButton:focus {
     outline: none;
 }
 
