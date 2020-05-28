@@ -1,3 +1,5 @@
+"use strict";
+
 function renderQuestionAndAnswersBodies() {
     convertQuestionBodyToHTML();
     convertAnswersBodiesToHTML();
