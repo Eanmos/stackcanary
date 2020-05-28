@@ -151,6 +151,26 @@ public class User implements UserDetails {
         return PRIME * id.hashCode();
     }
 
+    public void voteUpForQuestion(Question q) {
+        votedUpQuestions.add(q);
+        votedDownQuestions.remove(q);
+    }
+
+    public void voteDownForQuestion(Question q) {
+        votedDownQuestions.add(q);
+        votedUpQuestions.remove(q);
+    }
+
+    public void voteUpForAnswer(Answer q) {
+        votedUpAnswers.add(q);
+        votedDownAnswers.remove(q);
+    }
+
+    public void voteDownForAnswer(Answer q) {
+        votedDownAnswers.add(q);
+        votedUpAnswers.remove(q);
+    }
+
     //==========================================
     //
     // UserDetails abstract methods implementation

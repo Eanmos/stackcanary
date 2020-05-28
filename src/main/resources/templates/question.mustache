@@ -13,10 +13,50 @@
     <body onload="renderQuestionAndAnswersBodies();">
         <div class="question">
             <div class="left">
+                {{^question.votedUpByActiveUser}}
+                <form action="/voteUpForQuestion" method="post"  class="voteForm">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
+                    <button id="questionVoteUpButton">
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
+                    </button>
+                </form>
+                {{/question.votedUpByActiveUser}}
 
-                <div id="questionVoteUpButton" {{#question.votedUpByActiveUser}}class="votedUpByActiveUser"{{/question.votedUpByActiveUser}}><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                {{#question.votedUpByActiveUser}}
+                <form action="/undoVoteUpForQuestion" method="post" class="voteForm">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
+                    <input type="hidden" name="vote" value="up"></input>
+                    <button id="questionVoteUpButton" class="votedUpByActiveUser">
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
+                    </button>
+                </form>
+                {{/question.votedUpByActiveUser}}
+
                 <div class="questionVotes">{{question.votes}}</div>
-                <div id="questionVoteDownButton" {{#question.votedDownByActiveUser}}class="votedDownByActiveUser"{{/question.votedDownByActiveUser}}><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+
+                {{^question.votedDownByActiveUser}}
+                <form  action="/voteDownForQuestion" method="post" class="voteForm">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
+                    <input type="hidden" name="vote" value="down"></input>
+                    <button id="questionVoteDownButton">
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
+                    </button>
+                </form>
+                {{/question.votedDownByActiveUser}}
+
+                {{#question.votedDownByActiveUser}}
+                <form action="/undoVoteDownForQuestion" method="post" class="voteForm">
+                    <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                    <input type="hidden" name="questionId" value="{{question.id}}"></input>
+                    <input type="hidden" name="vote" value="down"></input>
+                    <button id="questionVoteDownButton" class="votedDownByActiveUser">
+                        <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
+                    </button>
+                </form>
+                {{/question.votedDownByActiveUser}}
             </div>
 
             <div class="main">
@@ -50,9 +90,54 @@
             {{#question.answers}}
             <div class="answer">
                 <div class="left">
-                    <div id="answerVoteUpButton" {{#votedUpByActiveUser}}class="votedUpByActiveUser"{{/votedUpByActiveUser}}><svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg></div>
+                    {{^votedUpByActiveUser}}
+                    <form action="/voteUpForAnswer" method="post"  class="voteForm">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input type="hidden" name="questionId" value="{{question.id}}" />
+                        <input type="hidden" name="answerId" value="{{id}}"></input>
+                        <button id="answerVoteUpButton">
+                            <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
+                        </button>
+                    </form>
+                    {{/votedUpByActiveUser}}
+
+                    {{#votedUpByActiveUser}}
+                    <form action="/undoVoteUpForAnswer" method="post" class="voteForm">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input type="hidden" name="questionId" value="{{question.id}}" />
+                        <input type="hidden" name="answerId" value="{{id}}"></input>
+                        <input type="hidden" name="vote" value="up"></input>
+                        <button id="answerVoteUpButton" class="votedUpByActiveUser">
+                            <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
+                        </button>
+                    </form>
+                    {{/votedUpByActiveUser}}
+
                     <div class="answerVotes">{{votes}}</div>
-                    <div id="answerVoteDownButton" {{#votedDownByActiveUser}}class="votedDownByActiveUser"{{/votedDownByActiveUser}}><svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg></div>
+
+                    {{^votedDownByActiveUser}}
+                    <form  action="/voteDownForAnswer" method="post" class="voteForm">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input type="hidden" name="questionId" value="{{question.id}}" />
+                        <input type="hidden" name="answerId" value="{{id}}"></input>
+                        <input type="hidden" name="vote" value="down"></input>
+                        <button id="answerVoteDownButton">
+                            <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
+                        </button>
+                    </form>
+                    {{/votedDownByActiveUser}}
+
+                    {{#votedDownByActiveUser}}
+                    <form action="/undoVoteDownForAnswer" method="post" class="voteForm">
+                        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+                        <input type="hidden" name="questionId" value="{{question.id}}" />
+                        <input type="hidden" name="answerId" value="{{id}}"></input>
+                        <input type="hidden" name="vote" value="down"></input>
+                        <button id="answerVoteDownButton" class="votedDownByActiveUser">
+                            <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
+                        </button>
+                    </form>
+                    {{/votedDownByActiveUser}}
                 </div>
 
                 <div class="main">

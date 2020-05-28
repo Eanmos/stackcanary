@@ -61,6 +61,36 @@ Question/Answer Votes
     fill: #f48024;
 }
 
+#questionVoteDownButton,
+#questionVoteUpButton,
+#answerVoteDownButton,
+#answerVoteUpButton {
+    margin: 0;
+    border: none;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+}
+
+#questionVoteDownButton:hover,
+#questionVoteUpButton:hover,
+#answerVoteDownButton:hover,
+#answerVoteUpButton:hover {
+    cursor: pointer;
+}
+
+#questionVoteDownButton:focus,
+#questionVoteUpButton:focus,
+#answerVoteDownButton:focus,
+#answerVoteUpButton:focus {
+    outline: none;
+}
+
+.voteForm {
+    margin: 0;
+    padding: 0;
+}
+
 /*
 =======================================
 Question Title
