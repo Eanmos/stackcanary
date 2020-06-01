@@ -66,8 +66,7 @@ Question/Answer Votes
 #questionVoteUpButton,
 .answerVoteDownButton,
 .answerVoteUpButton {
-    margin: 0;
-    border: none;
+    margin: 0; border: none;
     background: transparent;
     padding: 0;
     width: 100%;
@@ -343,6 +342,73 @@ Post Answer Button
 #postAnswerButton:active {
     background: #0064bd;
     border-top: 1px solid #0064bd;
+}
+
+/*
+=======================================
+Live Answer Preview
+=======================================
+*/
+
+#answerBodyPreview {
+	margin: 20px 0;
+}
+
+#answerBodyPreview p,
+#answerBodyPreview ul,
+#answerBodyPreview li {
+	font: 13px "Lato";
+	text-align: justify;
+	margin-top: 0;
+}
+
+#answerBodyPreview p code {
+	background: #f3f3f3;
+	padding: 1px 4px;
+}
+
+#answerBodyPreview a {
+	color: #23629F;
+}
+
+#answerBodyPreview blockquote {
+	border-left: 3px solid #ccc;
+	margin-left: 0;
+	padding-left: 10px;
+}
+
+#answerBodyPreview blockquote:first-child {
+	margin-top: 0;
+}
+
+#answerBodyPreview h1 {
+    font: bold 21px "Lato";
+}
+
+#answerBodyPreview h1:first-child {
+    margin-top: 0;
+}
+
+#answerBodyPreview h2 {
+    font: bold 19px "Lato";
+}
+
+#answerBodyPreview h2:first-child {
+    margin-top: 0;
+}
+
+#answerBodyPreview h3 {
+    font: bold 17px "Lato";
+}
+
+#answerBodyPreview h3:first-child {
+    margin-top: 0;
+}
+
+#answerBodyPreview hr {
+    border: none;
+    background: #ccc;
+    height: 1px;
 }
 
 /*

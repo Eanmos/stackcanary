@@ -10,6 +10,8 @@
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
         <script defer src="/static/libs/highlight.js"></script>
+        <script defer src="/static/libs/showdown.js"></script>
+        <script defer src="/static/scripts/previewAnswer.js"></script>
         <script defer src="/static/scripts/questionAndAnswersBodyRendering.js"></script>
     </head>
     <body onload="renderQuestionAndAnswersBodies();">
@@ -160,7 +162,9 @@
         <h2 id="yourAnswerLabel">Your Answer</h2>
 
         <form id="answerEditorForm" action="/q" method="post">
-            <textarea spellcheck="false" id="answerBodyTextArea" name="body"></textarea>
+            <textarea oninput="previewAnswerBody(this);" spellcheck="false" id="answerBodyTextArea" name="body"></textarea>
+
+            <div id="answerBodyPreview"></div>
 
             <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
             <input type="hidden" name="questionId" value="{{question.id}}" />
