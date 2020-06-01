@@ -110,7 +110,7 @@ Question Title Input and Question Body TextArea
     resize: vertical;
     font: 13px "Iosevka SS03", "Consolas", monospace;
     padding: 12px;
-    min-height: 400px;
+    min-height: 250px;
 }
 
 #questionBodyTextArea::-webkit-scrollbar {
@@ -247,6 +247,73 @@ Ask Question Button
 #askQuestionButton:active {
     background: #0064bd;
     border-top: 1px solid #0064bd;
+}
+
+/*
+=======================================
+Live Question Preview
+=======================================
+*/
+
+#questionBodyPreview {
+	margin: 20px 0;
+}
+
+#questionBodyPreview p,
+#questionBodyPreview ul,
+#questionBodyPreview li {
+	font: 13px "Lato";
+	text-align: justify;
+	margin-top: 0;
+}
+
+#questionBodyPreview p code {
+	background: #f3f3f3;
+	padding: 1px 4px;
+}
+
+#questionBodyPreview a {
+	color: #23629F;
+}
+
+#questionBodyPreview blockquote {
+	border-left: 3px solid #ccc;
+	margin-left: 0;
+	padding-left: 10px;
+}
+
+#questionBodyPreview blockquote:first-child {
+	margin-top: 0;
+}
+
+#questionBodyPreview h1 {
+    font: bold 21px "Lato";
+}
+
+#questionBodyPreview h1:first-child {
+    margin-top: 0;
+}
+
+#questionBodyPreview h2 {
+    font: bold 19px "Lato";
+}
+
+#questionBodyPreview h2:first-child {
+    margin-top: 0;
+}
+
+#questionBodyPreview h3 {
+    font: bold 17px "Lato";
+}
+
+#questionBodyPreview h3:first-child {
+    margin-top: 0;
+}
+
+#questionBodyPreview hr {
+    border: none;
+    background: #ccc;
+    height: 1px;
 }
 
 /*
