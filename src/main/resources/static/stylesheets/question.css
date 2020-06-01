@@ -42,6 +42,7 @@ Main Question/Answer Block Style
 
 .question > .main,
 .answer > .main {
+	min-width: 100%;
     overflow: hidden;
 }
 
