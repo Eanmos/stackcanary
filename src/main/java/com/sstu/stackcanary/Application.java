@@ -1,6 +1,5 @@
-package com.sstu.StackCanary;
+package com.sstu.stackcanary;
 
-import com.sstu.StackCanary.repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

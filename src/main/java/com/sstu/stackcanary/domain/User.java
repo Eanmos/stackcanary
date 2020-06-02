@@ -1,4 +1,4 @@
-package com.sstu.StackCanary.domain;
+package com.sstu.stackcanary.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

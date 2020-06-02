@@ -1,6 +1,6 @@
-package com.sstu.StackCanary.services;
+package com.sstu.stackcanary.services;
 
-import com.sstu.StackCanary.repositories.UserRepository;
+import com.sstu.stackcanary.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

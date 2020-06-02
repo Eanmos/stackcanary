@@ -1,10 +1,10 @@
-package com.sstu.StackCanary.controllers;
+package com.sstu.stackcanary.controllers;
 
 import java.util.Map;
 
-import com.sstu.StackCanary.domain.Question;
-import com.sstu.StackCanary.domain.User;
-import com.sstu.StackCanary.repositories.QuestionRepository;
+import com.sstu.stackcanary.domain.Question;
+import com.sstu.stackcanary.domain.User;
+import com.sstu.stackcanary.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

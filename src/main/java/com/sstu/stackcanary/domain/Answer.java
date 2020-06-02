@@ -1,6 +1,10 @@
-package com.sstu.StackCanary.domain;
+package com.sstu.stackcanary.domain;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -15,14 +19,10 @@ import java.util.Set;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class Question {
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter
     private Integer id;
-
-    @NonNull
-    private String title;
 
     @Column(columnDefinition = "LONGTEXT")
     @NonNull
@@ -38,30 +38,23 @@ public class Question {
     @NonNull
     private User author;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "question_tag",
-        joinColumns = @JoinColumn(name = "question_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
+    @ManyToOne
+    @JoinColumn(name = "question", nullable = false)
     @NonNull
-    private Set<Tag> tags;
+    private Question question;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
-    public Set<Answer> answers;
-
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
-            name = "question_vote_up",
-            joinColumns = @JoinColumn(name = "question_id"),
+            name = "answer_vote_up",
+            joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     public Set<User> votedUpByUsers;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
-            name = "question_vote_down",
-            joinColumns = @JoinColumn(name = "question_id"),
+            name = "answer_vote_down",
+            joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     public Set<User> votedDownByUsers;
@@ -75,13 +68,10 @@ public class Question {
     //==========================================
 
     @Transient
-    public String formattedCreationDateTime;
+    private String formattedCreationDateTime;
 
     @Transient
     public Integer votes;
-
-    @Transient
-    public Integer answersCount;
 
     @Transient
     public String bodyInHTML;
@@ -107,10 +97,6 @@ public class Question {
         votes = votedUpByUsers.size() - votedDownByUsers.size();
     }
 
-    public void calculateAnswersCount() {
-        answersCount = this.answers.size();
-    }
-
     public void convertBodyFromMarkdownToHTML() {
         Node           document  =  Parser.builder().build().parse(body);
         HtmlRenderer   renderer  =  HtmlRenderer.builder().escapeHtml(true).build();
@@ -121,10 +107,10 @@ public class Question {
         if (user == null) {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = false;
-        } else if (user.getVotedUpQuestions().contains(this)) {
+        } else if (user.getVotedUpAnswers().contains(this)) {
             this.votedUpByActiveUser = true;
             this.votedDownByActiveUser = false;
-        } else if (user.getVotedDownQuestions().contains(this)) {
+        } else if (user.getVotedDownAnswers().contains(this)) {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = true;
         } else {

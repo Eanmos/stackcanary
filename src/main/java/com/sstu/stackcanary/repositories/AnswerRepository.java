@@ -1,6 +1,6 @@
-package com.sstu.StackCanary.repositories;
+package com.sstu.stackcanary.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import com.sstu.StackCanary.domain.Answer;
+import com.sstu.stackcanary.domain.Answer;
 
 public interface AnswerRepository extends CrudRepository<Answer, Integer> {}

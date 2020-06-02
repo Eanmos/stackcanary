@@ -1,6 +1,6 @@
-package com.sstu.StackCanary.configuration;
+package com.sstu.stackcanary.configuration;
 
-import com.sstu.StackCanary.services.UserService;
+import com.sstu.stackcanary.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

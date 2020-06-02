@@ -1,4 +1,4 @@
-package com.sstu.StackCanary.domain;
+package com.sstu.stackcanary.domain;
 
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

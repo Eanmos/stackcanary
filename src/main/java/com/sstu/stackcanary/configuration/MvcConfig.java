@@ -1,4 +1,4 @@
-package com.sstu.StackCanary.configuration;
+package com.sstu.stackcanary.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
