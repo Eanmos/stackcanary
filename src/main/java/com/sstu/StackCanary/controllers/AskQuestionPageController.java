@@ -51,7 +51,7 @@ public class AskQuestionPageController {
         }
 
         // Create new question and save it in the database.
-        Question q = new Question(user, title, body, tags);
+        Question q = new Question(title, body, new Date(), user, tags);
         questionRepository.save(q);
 
         // Redirect to the new question's page.

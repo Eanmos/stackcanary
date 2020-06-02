@@ -30,7 +30,7 @@ public class AddAnswerController {
         Question q = questionRepository.findById(questionId).get();
 
         // Add new answer to the database.
-        answerRepository.save(new Answer(user, q, body));
+        answerRepository.save(new Answer(body, new Date(), user, q));
 
         // Redirect to the question page.
         return "redirect:/q?id=" + questionId;

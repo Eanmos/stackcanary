@@ -1,5 +1,10 @@
 package com.sstu.StackCanary.domain;
 
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -11,36 +16,31 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Answer {
-    //==========================================
-    //
-    // Database Columns
-    //
-    //==========================================
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(columnDefinition = "LONGTEXT")
+    @NonNull
     private String body;
 
     @Column(name = "creationDateTime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
+    @NonNull
     private Date creationDateTime;
-
-    //==========================================
-    //
-    // Relations
-    //
-    //==========================================
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author")
+    @NonNull
     private User author;
 
     @ManyToOne
     @JoinColumn(name = "question", nullable = false)
+    @NonNull
     private Question question;
 
     @ManyToMany
@@ -84,23 +84,6 @@ public class Answer {
 
     //==========================================
     //
-    // Constructors
-    //
-    //==========================================
-
-    protected Answer() {}
-
-    public Answer(User author, Question question, String body) {
-        this.author = author;
-        this.question = question;
-        this.body = body;
-
-        // Assign current date and time.
-        this.creationDateTime = new Date();
-    }
-
-    //==========================================
-    //
     // Methods
     //
     //==========================================
@@ -134,24 +117,5 @@ public class Answer {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = false;
         }
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that)
-            return true;
-
-        if (!(that instanceof Answer))
-            return false;
-
-        Answer thatAnswer = (Answer) that;
-
-        return this.id.equals(thatAnswer.id);
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 37;
-        return PRIME * id.hashCode();
     }
 }

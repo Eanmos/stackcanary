@@ -1,5 +1,6 @@
 package com.sstu.StackCanary.domain;
 
+import lombok.*;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -11,34 +12,30 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Question {
-    //==========================================
-    //
-    // Database Columns
-    //
-    //==========================================
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Integer id;
 
+    @NonNull
     private String title;
 
     @Column(columnDefinition = "LONGTEXT")
+    @NonNull
     private String body;
 
     @Column(name = "creationDateTime", columnDefinition = "DATETIME")
     @Temporal(TemporalType.TIMESTAMP)
+    @NonNull
     private Date creationDateTime;
-
-    //==========================================
-    //
-    // Relations
-    //
-    //==========================================
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author")
+    @NonNull
     private User author;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -47,6 +44,7 @@ public class Question {
         joinColumns = @JoinColumn(name = "question_id"),
         inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
+    @NonNull
     private Set<Tag> tags;
 
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
@@ -96,34 +94,6 @@ public class Question {
 
     //==========================================
     //
-    // Constructors
-    //
-    //==========================================
-
-    protected Question() {}
-
-    public Question(User author, String title, String body, Set<Tag> tags) {
-        this.author = author;
-        this.title = title;
-        this.body = body;
-        this.tags = tags;
-
-        // Assign current date and time.
-        this.creationDateTime = new Date();
-    }
-
-    //==========================================
-    //
-    // Getters and Setters
-    //
-    //==========================================
-
-    public Integer getId() {
-        return id;
-    }
-
-    //==========================================
-    //
     // Methods
     //
     //==========================================
@@ -161,24 +131,5 @@ public class Question {
             this.votedUpByActiveUser = false;
             this.votedDownByActiveUser = false;
         }
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that)
-            return true;
-
-        if (!(that instanceof Question))
-            return false;
-
-        Question thatQuestion = (Question) that;
-
-        return this.id.equals(thatQuestion.id);
-    }
-
-    @Override
-    public int hashCode() {
-        final int PRIME = 37;
-        return PRIME * id.hashCode();
     }
 }

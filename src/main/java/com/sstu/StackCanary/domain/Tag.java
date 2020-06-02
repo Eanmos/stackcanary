@@ -1,39 +1,23 @@
 package com.sstu.StackCanary.domain;
 
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Tag {
-    //==========================================
-    //
-    // Database Columns
-    //
-    //==========================================
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String name;
 
-    //==========================================
-    //
-    // Relations
-    //
-    //==========================================
+    @NonNull
+    private String name;
 
     @ManyToMany(mappedBy = "tags")
     private Set<Question> questions;
-
-    //==========================================
-    //
-    // Constructors
-    //
-    //==========================================
-
-    protected Tag() {}
-
-    public Tag(String name) {
-        this.name = name;
-    }
 }
