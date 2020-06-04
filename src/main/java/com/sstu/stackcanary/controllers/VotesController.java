@@ -7,7 +7,6 @@ import com.sstu.stackcanary.repositories.AnswerRepository;
 import com.sstu.stackcanary.repositories.QuestionRepository;
 import com.sstu.stackcanary.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

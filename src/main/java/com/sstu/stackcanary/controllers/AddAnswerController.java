@@ -1,18 +1,18 @@
 package com.sstu.stackcanary.controllers;
 
-import java.util.*;
-
 import com.sstu.stackcanary.domain.Answer;
 import com.sstu.stackcanary.domain.Question;
 import com.sstu.stackcanary.domain.User;
 import com.sstu.stackcanary.repositories.AnswerRepository;
 import com.sstu.stackcanary.repositories.QuestionRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Date;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
