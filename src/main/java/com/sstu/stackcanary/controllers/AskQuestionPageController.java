@@ -4,12 +4,13 @@ import com.sstu.stackcanary.domain.Question;
 import com.sstu.stackcanary.domain.Tag;
 import com.sstu.stackcanary.domain.User;
 import com.sstu.stackcanary.repositories.QuestionRepository;
-import com.sstu.stackcanary.repositories.TagRepository;
+import com.sstu.stackcanary.services.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Date;
@@ -18,37 +19,31 @@ import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/askQuestion")
 public class AskQuestionPageController {
     final private QuestionRepository questionRepository;
-    final private TagRepository tagRepository;
+    final private TagService tagService;
 
-    @GetMapping("/askQuestion")
+    @GetMapping
     public String main(@AuthenticationPrincipal User user,
                        Map<String, Object> model) {
         model.put("authorizedUser", user);
         return "askQuestion";
     }
 
-    @PostMapping("/askQuestion")
+    @PostMapping
     public String postQuestion(@AuthenticationPrincipal User user,
                                @RequestParam String title,
                                @RequestParam String body,
                                @RequestParam("tag") String [] tagNames,
                                Map<String, Object> model) {
-        // Create empty set of tags.
+        // Create an empty set of tags.
         HashSet<Tag> tags = new HashSet<Tag>();
 
-        // Fill this set with tags with given name from database.
+        // Fill this set with tags with given name from the database.
         // If the tag not exist create such new one.
-        for (String name : tagNames) {
-            Tag tag = tagRepository.findByName(name);
-
-            if (tag == null)
-                tag = new Tag(name);
-
-            tagRepository.save(tag);
-            tags.add(tag);
-        }
+        for (String name : tagNames)
+            tags.add(tagService.getTagCreateIfNotExists(name));
 
         // Create new question and save it in the database.
         Question q = new Question(title, body, new Date(), user, tags);
