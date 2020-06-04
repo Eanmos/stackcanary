@@ -41,6 +41,7 @@ public class VotesController {
 
     @PostMapping("/undoVoteUpForAnswer")
     public String undoVoteUpForAnswer(@AuthenticationPrincipal User user,
+                                      @RequestParam Integer questionId,
                                       @RequestParam Integer answerId,
                                       Map<String, Object> model) {
         Answer answer = answerRepository.findById(answerId).get();
@@ -51,7 +52,7 @@ public class VotesController {
         answerRepository.save(answer);
         userRepository.save(user);
 
-        return "redirect:/q?id=" + answerId;
+        return "redirect:/q?id=" + questionId;
     }
 
     @PostMapping("/voteDownForAnswer")
@@ -74,6 +75,7 @@ public class VotesController {
 
     @PostMapping("/undoVoteDownForAnswer")
     public String undoVoteDownForAnswer(@AuthenticationPrincipal User user,
+                                        @RequestParam Integer questionId,
                                         @RequestParam Integer answerId,
                                         Map<String, Object> model) {
         Answer answer = answerRepository.findById(answerId).get();
@@ -84,7 +86,7 @@ public class VotesController {
         answerRepository.save(answer);
         userRepository.save(user);
 
-        return "redirect:/q?id=" + answerId;
+        return "redirect:/q?id=" + questionId;
     }
 
     @PostMapping("/voteUpForQuestion")
