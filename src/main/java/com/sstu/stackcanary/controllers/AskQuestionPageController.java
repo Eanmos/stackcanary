@@ -7,6 +7,7 @@ import com.sstu.stackcanary.domain.Tag;
 import com.sstu.stackcanary.domain.User;
 import com.sstu.stackcanary.repositories.QuestionRepository;
 import com.sstu.stackcanary.repositories.TagRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequiredArgsConstructor
 public class AskQuestionPageController {
-    @Autowired
-    private QuestionRepository questionRepository;
-
-    @Autowired
-    private TagRepository tagRepository;
+    final private QuestionRepository questionRepository;
+    final private TagRepository tagRepository;
 
     @GetMapping("/askQuestion")
     public String main(@AuthenticationPrincipal User user,

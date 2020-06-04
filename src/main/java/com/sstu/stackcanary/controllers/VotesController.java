@@ -6,6 +6,7 @@ import com.sstu.stackcanary.domain.User;
 import com.sstu.stackcanary.repositories.AnswerRepository;
 import com.sstu.stackcanary.repositories.QuestionRepository;
 import com.sstu.stackcanary.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -15,15 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
+@RequiredArgsConstructor
 public class VotesController {
-    @Autowired
-    private AnswerRepository answerRepository;
-
-    @Autowired
-    private QuestionRepository questionRepository;
-
-    @Autowired
-    private UserRepository userRepository;
+    final private AnswerRepository answerRepository;
+    final private QuestionRepository questionRepository;
+    final private UserRepository userRepository;
 
     @PostMapping("/voteUpForAnswer")
     public String voteUpForAnswer(@AuthenticationPrincipal User user,
