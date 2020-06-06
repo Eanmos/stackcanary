@@ -1,5 +1,6 @@
 package com.sstu.stackcanary.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ public class Tag {
     private Integer id;
 
     @NonNull
+    @Getter
     private String name;
 
     @ManyToMany(mappedBy = "tags")

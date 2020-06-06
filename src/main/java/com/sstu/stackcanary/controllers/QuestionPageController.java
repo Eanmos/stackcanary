@@ -1,8 +1,8 @@
 package com.sstu.stackcanary.controllers;
 
-import com.sstu.stackcanary.domain.Answer;
 import com.sstu.stackcanary.domain.Question;
 import com.sstu.stackcanary.domain.User;
+import com.sstu.stackcanary.domain.views.QuestionView;
 import com.sstu.stackcanary.repositories.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,29 +24,9 @@ public class QuestionPageController {
         // Assuming that the question with
         // given ID always exists.
         Question q = questionRepository.findById(id).get();
+        QuestionView qv = new QuestionView(q, user);
 
-        // Prepare transient fields
-        //
-        // — formattedCreationDateTime
-        // — votes
-        // — answersCount
-        // — bodyInHTML
-        //
-        // that will be used in the template.
-        q.calculateVotes();
-        q.calculateAnswersCount();
-        q.formatCreationDateTime();
-        q.convertBodyFromMarkdownToHTML();
-        q.setVotedByActiveUser(user);
-
-        // Prepare transient fields of the each answer as well
-        // as we have done with the question.
-        q.answers.forEach(Answer::formatCreationDateTime);
-        q.answers.forEach(Answer::calculateVotes);
-        q.answers.forEach(Answer::convertBodyFromMarkdownToHTML);
-        q.answers.forEach(a -> a.setVotedByActiveUser(user));
-
-        model.put("question", q);
+        model.put("question", qv);
         model.put("authorized", (user != null));
 
         return "question";
