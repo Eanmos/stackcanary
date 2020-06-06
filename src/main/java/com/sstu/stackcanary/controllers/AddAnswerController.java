@@ -26,7 +26,7 @@ public class AddAnswerController {
                                @RequestParam String body,
                                Map<String, Object> model) {
         // Assuming that the question with given ID always exists.
-        Question q = questionRepository.findById(questionId).get();
+        final Question q = questionRepository.findById(questionId).get();
 
         // Add new answer to the database.
         answerRepository.save(new Answer(body, new Date(), user, q));

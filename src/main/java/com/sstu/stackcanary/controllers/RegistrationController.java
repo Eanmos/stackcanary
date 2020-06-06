@@ -3,6 +3,7 @@ package com.sstu.stackcanary.controllers;
 import com.sstu.stackcanary.domain.Role;
 import com.sstu.stackcanary.domain.User;
 import com.sstu.stackcanary.repositories.UserRepository;
+import com.sstu.stackcanary.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class RegistrationController {
     final private UserRepository userRepository;
+    final private UserService userService;
 
     @GetMapping
     public String main(Map<String, Object> model) {
@@ -25,8 +27,8 @@ public class RegistrationController {
 
     @PostMapping
     public String registerUser(User user, Map<String, Object> model) {
-        if (userWithThisUsernameAlreadyExists(user)) {
-            model.put("userWithThisUsernameAlreadyExistsMessage", "User with this username already exists.");
+        if (userService.userWithThisUsernameAlreadyExists(user.getUsername())) {
+            model.put("userWithThisUsernameAlreadyExistsMessage", true);
             return "registration";
         }
 
@@ -35,9 +37,5 @@ public class RegistrationController {
         userRepository.save(user);
 
         return "redirect:/login";
-    }
-
-    private boolean userWithThisUsernameAlreadyExists(User u) {
-        return userRepository.findByUsername(u.getUsername()) != null;
     }
 }

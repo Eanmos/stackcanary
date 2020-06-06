@@ -42,11 +42,11 @@ public class AskQuestionPageController {
 
         // Fill this set with tags with given name from the database.
         // If the tag not exist create such new one.
-        for (String name : tagNames)
+        for (final String name : tagNames)
             tags.add(tagService.getTagCreateIfNotExists(name));
 
         // Create new question and save it in the database.
-        Question q = new Question(title, body, new Date(), user, tags);
+        final Question q = new Question(title, body, new Date(), user, tags);
         questionRepository.save(q);
 
         // Redirect to the new question's page.

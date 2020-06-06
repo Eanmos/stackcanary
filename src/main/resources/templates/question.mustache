@@ -68,11 +68,11 @@
                     <a class="questionTitle" href="#">{{question.title}}</a>
                 </div>
 
-                <div id="questionBody">{{question.bodyInHTML}}</div>
+                <div id="questionBody">{{question.body}}</div>
 
                 <div class="questionInfo">
                     <span>asked</span>
-                    <span class="questionDate">{{question.formattedCreationDateTime}}</span>
+                    <span class="questionDate">{{question.creationDateTime}}</span>
                     <span>by</span>
                     <span class="questionAuthor">{{question.author.username}}</span>
                 </div>
@@ -145,11 +145,11 @@
                 </div>
 
                 <div class="main">
-                    <div class="answerBody">{{bodyInHTML}}</div>
+                    <div class="answerBody">{{body}}</div>
 
                     <div class="answerInfo">
                         <span>answered</span>
-                        <span class="answerDate">{{formattedCreationDateTime}}</span>
+                        <span class="answerDate">{{creationDateTime}}</span>
                         <span>by</span>
                         <span class="answerAuthor">{{author.username}}</span>
                     </div>

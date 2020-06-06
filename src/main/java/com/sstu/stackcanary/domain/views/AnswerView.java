@@ -13,23 +13,23 @@ import java.util.Date;
 public class AnswerView {
    final private Integer id;
    final private UserView author;
-   final private String formattedCreationDateTime;
+   final private String creationDateTime;
    final private Integer votes;
-   final private String bodyInHTML;
+   final private String body;
    final private boolean votedUpByActiveUser;
    final private boolean votedDownByActiveUser;
 
-   public AnswerView(final Answer a, final User u) {
+   public AnswerView(final Answer a, final User activeUser) {
       this.id = a.getId();
       this.author = new UserView(a.getAuthor());
-      this.formattedCreationDateTime = formatCreationDateTime(a.getCreationDateTime());
+      this.creationDateTime = formatDateTime(a.getCreationDateTime());
       this.votes = calculateVotes(a);
-      this.bodyInHTML = convertBodyFromMarkdownToHTML(a.getBody());
-      this.votedUpByActiveUser = isVotedUpByActiveUser(a, u);
-      this.votedDownByActiveUser = isVotedDownByActiveUser(a, u);
+      this.body = convertBodyFromMarkdownToHTML(a.getBody());
+      this.votedUpByActiveUser = isVotedUpByActiveUser(a, activeUser);
+      this.votedDownByActiveUser = isVotedDownByActiveUser(a, activeUser);
    }
 
-   private String formatCreationDateTime(final Date d) {
+   private String formatDateTime(final Date d) {
       DateFormat fmt = new SimpleDateFormat("MMM d ''yy 'at' HH:mm");
       return fmt.format(d);
    }

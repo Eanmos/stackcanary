@@ -16,4 +16,8 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username);
     }
+
+    public boolean userWithThisUsernameAlreadyExists(String username) {
+        return userRepository.findByUsername(username) != null;
+    }
 }
