@@ -41,7 +41,7 @@ public class Answer {
             joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedUpByUsers;
+    private Set<User> votedUpByUsers;
 
     @ManyToMany
     @JoinTable(
@@ -49,5 +49,18 @@ public class Answer {
             joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedDownByUsers;
+    private Set<User> votedDownByUsers;
+
+    public void voteByUser(final User u, final Vote v) {
+        if (v == Vote.UP) {
+            votedDownByUsers.remove(u);
+            votedUpByUsers.add(u);
+        } else if (v == Vote.DOWN) {
+            votedDownByUsers.add(u);
+            votedUpByUsers.remove(u);
+        } else if (v == Vote.NONE) {
+            votedDownByUsers.remove(u);
+            votedUpByUsers.remove(u);
+        }
+    }
 }

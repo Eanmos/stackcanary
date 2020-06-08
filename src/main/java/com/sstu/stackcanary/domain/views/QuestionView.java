@@ -47,7 +47,7 @@ public class QuestionView {
     }
 
     private Integer calculateAnswersCount(final Question q) {
-        return q.answers.size();
+        return q.getAnswers().size();
     }
 
     private Integer calculateVotes(final Question q) {

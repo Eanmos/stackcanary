@@ -20,7 +20,7 @@
                 {{^question.votedUpByActiveUser}}
                 <form action="/voteUpForQuestion" method="post"  class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="id" value="{{question.id}}" />
                     <button id="questionVoteUpButton">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
                     </button>
@@ -28,9 +28,9 @@
                 {{/question.votedUpByActiveUser}}
 
                 {{#question.votedUpByActiveUser}}
-                <form action="/undoVoteUpForQuestion" method="post" class="voteForm">
+                <form action="/undoVoteForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="id" value="{{question.id}}" />
                     <input type="hidden" name="vote" value="up" />
                     <button id="questionVoteUpButton" class="votedUpByActiveUser">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowUpLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 26h32L18 10 2 26z"></path></svg>
@@ -43,7 +43,7 @@
                 {{^question.votedDownByActiveUser}}
                 <form  action="/voteDownForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="id" value="{{question.id}}" />
                     <input type="hidden" name="vote" value="down" />
                     <button id="questionVoteDownButton">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
@@ -52,9 +52,9 @@
                 {{/question.votedDownByActiveUser}}
 
                 {{#question.votedDownByActiveUser}}
-                <form action="/undoVoteDownForQuestion" method="post" class="voteForm">
+                <form action="/undoVoteForQuestion" method="post" class="voteForm">
                     <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
-                    <input type="hidden" name="questionId" value="{{question.id}}" />
+                    <input type="hidden" name="id" value="{{question.id}}" />
                     <input type="hidden" name="vote" value="down" />
                     <button id="questionVoteDownButton" class="votedDownByActiveUser">
                         <svg aria-hidden="true" class="m0 svg-icon iconArrowDownLg" width="25" height="25" viewBox="0 0 36 36"><path d="M2 10h32L18 26 2 10z"></path></svg>
@@ -106,7 +106,7 @@
                     {{/votedUpByActiveUser}}
 
                     {{#votedUpByActiveUser}}
-                    <form action="/undoVoteUpForAnswer" method="post" class="voteForm">
+                    <form action="/undoVoteForAnswer" method="post" class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
                         <input type="hidden" name="answerId" value="{{id}}" />
@@ -132,7 +132,7 @@
                     {{/votedDownByActiveUser}}
 
                     {{#votedDownByActiveUser}}
-                    <form action="/undoVoteDownForAnswer" method="post" class="voteForm">
+                    <form action="/undoVoteForAnswer" method="post" class="voteForm">
                         <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
                         <input type="hidden" name="questionId" value="{{question.id}}" />
                         <input type="hidden" name="answerId" value="{{id}}" />

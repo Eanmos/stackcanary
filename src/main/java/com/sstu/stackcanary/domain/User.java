@@ -42,24 +42,30 @@ public class User implements UserDetails {
     @ManyToMany(mappedBy = "votedDownByUsers", fetch = FetchType.EAGER)
     private Set<Answer> votedDownAnswers;
 
-    public void voteUpForQuestion(Question q) {
-        votedUpQuestions.add(q);
-        votedDownQuestions.remove(q);
+    public void voteForQuestion(final Question q, final Vote v) {
+        if (v == Vote.UP) {
+            votedDownQuestions.remove(q);
+            votedUpQuestions.add(q);
+        } else if (v == Vote.DOWN) {
+            votedDownQuestions.add(q);
+            votedUpQuestions.remove(q);
+        } else if (v == Vote.NONE) {
+            votedDownQuestions.remove(q);
+            votedUpQuestions.remove(q);
+        }
     }
 
-    public void voteDownForQuestion(Question q) {
-        votedDownQuestions.add(q);
-        votedUpQuestions.remove(q);
-    }
-
-    public void voteUpForAnswer(Answer q) {
-        votedUpAnswers.add(q);
-        votedDownAnswers.remove(q);
-    }
-
-    public void voteDownForAnswer(Answer q) {
-        votedDownAnswers.add(q);
-        votedUpAnswers.remove(q);
+    public void voteForAnswer(final Answer a, final Vote v) {
+        if (v == Vote.UP) {
+            votedDownAnswers.remove(a);
+            votedUpAnswers.add(a);
+        } else if (v == Vote.DOWN) {
+            votedDownAnswers.add(a);
+            votedUpAnswers.remove(a);
+        } else if (v == Vote.NONE) {
+            votedDownAnswers.remove(a);
+            votedUpAnswers.remove(a);
+        }
     }
 
     @Override

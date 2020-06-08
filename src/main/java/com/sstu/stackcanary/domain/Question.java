@@ -44,7 +44,7 @@ public class Question {
     private Set<Tag> tags;
 
     @OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
-    public Set<Answer> answers;
+    private Set<Answer> answers;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -52,7 +52,7 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedUpByUsers;
+    private Set<User> votedUpByUsers;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -60,5 +60,18 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> votedDownByUsers;
+    private Set<User> votedDownByUsers;
+
+    public void voteByUser(final User u, final Vote v) {
+        if (v == Vote.UP) {
+            votedDownByUsers.remove(u);
+            votedUpByUsers.add(u);
+        } else if (v == Vote.DOWN) {
+            votedDownByUsers.add(u);
+            votedUpByUsers.remove(u);
+        } else if (v == Vote.NONE) {
+            votedDownByUsers.remove(u);
+            votedUpByUsers.remove(u);
+        }
+    }
 }
