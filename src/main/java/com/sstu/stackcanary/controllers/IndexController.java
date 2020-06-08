@@ -9,9 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,8 +19,8 @@ public class IndexController {
     @GetMapping
     public String main(@AuthenticationPrincipal User user,
                        Map<String, Object> model) {
-        final Iterable<Question> questions = questionRepository.findAll();
-        Set<QuestionView> questionViews = new HashSet<>();
+        final List<Question> questions = questionRepository.findAllByOrderByCreationDateTimeDesc();
+        List<QuestionView> questionViews = new ArrayList<>();
 
         for (final Question q : questions)
             questionViews.add(new QuestionView(q, user));
